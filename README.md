@@ -1,63 +1,48 @@
 # tico-os
 
-A local agentic workflow system for Claude Code. tico-os enforces model-tier routing, token efficiency guardrails, and a Think-Step-Check discipline on every task in a session.
+Personal Claude Code plugin, plus a reusable house-rules template, synced across machines via git.
 
-## What it does
-
-- Routes tasks to the right model tier (High-Reasoning vs Low-Cost) based on complexity, determinism, and expected turns
-- Enforces token budgets: summarizes large files, chunks oversized inputs, caps Low-Cost output
-- Escalates failed Low-Cost tasks to High-Reasoning automatically, with context preserved
-- Installs itself into `~/.claude/` via symlinks so it loads on every Claude Code session
-
-## Project Structure
+## What's in here
 
 ```
 tico-os/
-├── CLAUDE.md               # Session init — loaded automatically by Claude Code
-├── tico-sync.sh            # Symlink installer for ~/.claude/ integration
-├── docs/
-│   └── architecture.md     # Task flow diagram and token budget table
-└── .tico/
-    ├── skills/
-    │   └── router.md       # Routing matrix, guardrails, escalation protocol
-    └── prompts/
-        └── summarize.md    # File compression prompt (≤15% of original lines)
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+├── skills/
+│   ├── summarize-file/
+│   │   └── SKILL.md         # Compress a large file to ~15% of its lines, preserving signatures
+│   └── task-routing/
+│       └── SKILL.md         # Guidance for when to delegate to tico-cheap instead of working inline
+├── agents/
+│   └── tico-cheap.md        # Haiku-pinned subagent for cheap, deterministic sub-tasks
+├── AGENTS.md.template       # House-rules template — copy into any repo as AGENTS.md
+└── docs/
+    └── architecture.md
 ```
 
-## tico Commands
+## Using the plugin (Claude Code)
 
-| Command | Description |
-|---|---|
-| `tico scan` | Re-scan `.tico/skills/` and `.tico/prompts/` and print loaded assets |
-| `tico route <task>` | Print which model tier the router selects for a given task |
-| `tico summarize <file>` | Compress a file to ≤15% of its original line count |
-| `tico status` | Show current session state: tier, context size, escalation count |
-| `tico sync` | Run `tico-sync.sh` to symlink tico assets into `~/.claude/` |
-| `tico check` | Validate that all required tico assets are present and well-formed |
-
-## Setup
+On any machine:
 
 ```bash
-# Symlink tico assets into ~/.claude/
-./tico-sync.sh
-
-# Preview what will be linked without making changes
-./tico-sync.sh --dry-run
+git clone <this-repo-url> ~/Development/tico-os
+git -C ~/Development/tico-os pull   # keep it current
+claude --plugin-dir ~/Development/tico-os
 ```
 
-After running `tico-sync.sh`, CLAUDE.md will be active in your `~/.claude/` directory and tico-os will initialize on every Claude Code session.
+This loads the `summarize-file` and `task-routing` skills and the `tico-cheap` subagent for that session. Skills are namespaced as `/tico-os:summarize-file` etc.
 
-## Model Tiers
+## Using the house rules (Claude Code + Cursor)
 
-| Tier | Model | Default? |
-|---|---|---|
-| Low-Cost | `claude-haiku-4-5` / local MCP | Yes |
-| High-Reasoning | `claude-sonnet-4-20250514` | Only when routing matrix requires it |
+`AGENTS.md.template` is not auto-applied — it's per-project opt-in:
 
-## Token Guardrails
+1. Copy it into a target repo as `AGENTS.md`.
+2. Cursor reads it natively, no further setup.
+3. For Claude Code to pick it up in that repo too, add one line to that repo's own `CLAUDE.md`:
+   ```
+   @AGENTS.md
+   ```
 
-| Condition | Action |
-|---|---|
-| File > 400 lines | Summarize before processing |
-| Input > 60k tokens | Chunk sequentially |
-| Low-Cost output > 2,000 tokens | Truncate and escalate |
+## Why not a symlink installer?
+
+The previous version of this repo (`tico-sync.sh`) symlinked flat `.md` files into `~/.claude/skills/` and `~/.claude/prompts/`. That's not the shape Claude Code actually reads — skills need a `<name>/SKILL.md` directory, and there's no `~/.claude/prompts/` convention. `--plugin-dir` against a synced clone is the supported mechanism for this.

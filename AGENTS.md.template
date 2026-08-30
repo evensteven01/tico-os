@@ -1,0 +1,19 @@
+# House rules
+
+Read natively by Cursor. For Claude Code to read this in a given repo, add `@AGENTS.md` as a line in that repo's own CLAUDE.md.
+
+## Large files
+
+Before deep-diving into a file over ~400 lines, get a compressed view first (signatures, types, public API surface) rather than reading it in full. Pull full source only for the specific section you need.
+
+## Large inputs
+
+For inputs beyond ~60k tokens, don't load everything at once — process sequentially in chunks and carry a running summary forward.
+
+## Output discipline
+
+No padding, filler, or speculative context. Include only what the current step actually needs — not "just in case" material.
+
+## Verification
+
+Verify output before moving on to the next step. If something fails validation, stop and address the failure rather than continuing on a broken assumption.

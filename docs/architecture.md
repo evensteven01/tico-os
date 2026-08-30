@@ -1,111 +1,32 @@
 # tico-os Architecture
 
-## Task Flow
+## Components
+
+- **skills/summarize-file** — a real Claude Code skill. Claude auto-invokes it when a task matches its description (summarizing/compressing a large file), or it can be called directly as `/tico-os:summarize-file`.
+- **skills/task-routing** — not executable logic; it's guidance content that tells Claude when a sub-task fits the `tico-cheap` profile and should be delegated rather than done inline.
+- **agents/tico-cheap** — a subagent definition pinned to `model: haiku` via its frontmatter. When `task-routing` guidance says to delegate, Claude spawns this agent through the Agent tool. This is the actual cost lever — Claude Code has no automatic complexity-detection router; delegation is deliberate, not automatic.
+- **AGENTS.md.template** — plain house-rules content, not part of the plugin. Copied per-project. Cursor reads `AGENTS.md` natively in all modes; Claude Code needs a `@AGENTS.md` import line in that project's own CLAUDE.md.
+
+## Delegation flow
 
 ```
-User Input
+Task arrives
     │
     ▼
-CLAUDE.md (session init + Think-Step-Check enforcement)
+Does it match task-routing's tico-cheap profile?
     │
-    ├── tico scan       → lists loaded skills and prompts
-    ├── tico route      → determines model tier
-    ├── tico summarize  → compresses large files before routing
-    ├── tico status     → reports session state
-    ├── tico sync       → symlinks assets to ~/.claude/
-    └── tico check      → validates asset integrity
+    ├── Yes → Agent tool spawns tico-cheap (haiku)
+    │             │
+    │             ▼
+    │         Output validates?
+    │             │
+    │             ├── Yes → done
+    │             └── No  → pick up the task directly, using the failed
+    │                       output as context for what went wrong
     │
-    ▼
-.tico/skills/router.md (routing decision matrix)
-    │
-    ├── File >400 lines? ──► .tico/prompts/summarize.md ──► compressed context
-    │
-    ├── Input >60k tokens? ──► sequential chunking
-    │
-    ├── Task signals? ──────────────────────────────────────────────┐
-    │                                                               │
-    ▼                                                               ▼
-Low-Cost Tier                                           High-Reasoning Tier
-claude-haiku-4-5 / local MCP                           claude-sonnet-4-20250514
-    │                                                               │
-    ▼                                                               │
-CHECK Phase ◄───────────────────────────────────────────────────────┘
-    │
-    ├── PASS → next step
-    │
-    └── FAIL / truncation / uncertainty
-            │
-            ▼
-        Escalation payload constructed
-            │
-            ▼
-        High-Reasoning Tier (with failed output as context)
-            │
-            ▼
-        CHECK Phase → PASS → continue
+    └── No → handle directly (or with a full-capability subagent)
 ```
 
----
+## Why this replaced the original design
 
-## Token Budget Table
-
-| Stage | Limit | Action on Breach |
-|---|---|---|
-| Single file input | 400 lines | Summarize via `summarize.md` before processing |
-| Total prompt input | 60,000 tokens | Chunk sequentially; carry running summary |
-| Low-Cost output | 2,000 tokens | Truncate, flag, escalate to High-Reasoning |
-| High-Reasoning output | No hard cap | Prefer concise; no padding rule applies |
-| Summary compression | ≤15% of original lines | Re-compress if threshold not met |
-
----
-
-## Asset Map
-
-```
-tico-os/
-├── CLAUDE.md                    # Session init, Think-Step-Check, tico commands
-├── tico-sync.sh                 # Symlink installer for ~/.claude/ integration
-├── docs/
-│   └── architecture.md          # This file
-└── .tico/
-    ├── skills/
-    │   └── router.md            # Routing matrix, token guardrails, escalation
-    └── prompts/
-        └── summarize.md         # File compression prompt (≤15% lines)
-```
-
----
-
-## Model Tier Summary
-
-| Tier | Model ID | Token Cost | Use Case |
-|---|---|---|---|
-| High-Reasoning | `claude-sonnet-4-20250514` | Higher | Complex, ambiguous, multi-step, high-stakes |
-| Low-Cost | `claude-haiku-4-5` | Lower | Deterministic, structured, 1–2 turn tasks |
-| Local MCP | Configured per environment | Minimal | Offline, privacy-sensitive, or high-volume tasks |
-
----
-
-## Escalation Flow Detail
-
-```
-Low-Cost attempt
-    │
-    └── Validation fail / truncation / uncertainty
-            │
-            ▼
-    Escalation payload:
-    {
-      original_task,
-      low_cost_model,
-      low_cost_output,       ← preserved, not discarded
-      failure_reason
-    }
-            │
-            ▼
-    High-Reasoning processes payload
-    (must address failure before producing output)
-            │
-            ▼
-    CHECK phase repeated
-```
+The original `.tico/skills/router.md` + `.tico/prompts/summarize.md` + `tico-sync.sh` scheme assumed Claude Code auto-scans arbitrary directories for "skills" and "prompts," and that a session could self-report which model tier it switched to. Neither is true: Claude Code only discovers skills at `<dir>/skills/<name>/SKILL.md` (personal, project, or plugin-scoped), there's no `prompts/` scan, and a session can't change its own underlying model — only subagents can be pinned to a different one via their `model:` frontmatter. This version uses only mechanisms that actually exist.
