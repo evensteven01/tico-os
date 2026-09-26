@@ -4,6 +4,13 @@
 
 - **skills/summarize-file** — a real Claude Code skill. Claude auto-invokes it when a task matches its description (summarizing/compressing a large file), or it can be called directly as `/tico-os:summarize-file`.
 - **skills/task-routing** — not executable logic; it's guidance content that tells Claude when a sub-task fits the `tico-cheap` profile and should be delegated rather than done inline.
+- **skills/new-project-setup** — bootstraps the three-persona system (Coder, Reviewer, GTM
+  Advisor) and the SPEC/TICKETS/go-to-market doc structure onto a new project, first
+  developed for `budget-app`. Ships as instructions (`SKILL.md`) plus a `templates/`
+  directory of fill-in `.md` files (two persona templates, `SPEC.md`, `TICKETS.md`, and the
+  nine-doc go-to-market planning set) — the skill's job is choosing which templates apply,
+  gathering real project-specific content through conversation, and refusing to fabricate
+  content just to fill a section.
 - **agents/tico-cheap** — a subagent definition pinned to `model: haiku` via its frontmatter. When `task-routing` guidance says to delegate, Claude spawns this agent through the Agent tool. This is the actual cost lever — Claude Code has no automatic complexity-detection router; delegation is deliberate, not automatic.
 - **AGENTS.md.template** — plain house-rules content, not part of the plugin. Copied per-project. Cursor reads `AGENTS.md` natively in all modes; Claude Code needs a `@AGENTS.md` import line in that project's own CLAUDE.md.
 

@@ -11,8 +11,11 @@ tico-os/
 ├── skills/
 │   ├── summarize-file/
 │   │   └── SKILL.md         # Compress a large file to ~15% of its lines, preserving signatures
-│   └── task-routing/
-│       └── SKILL.md         # Guidance for when to delegate to tico-cheap instead of working inline
+│   ├── task-routing/
+│   │   └── SKILL.md         # Guidance for when to delegate to tico-cheap instead of working inline
+│   └── new-project-setup/
+│       ├── SKILL.md         # Bootstraps the Coder/Reviewer/GTM-Advisor persona system + go-to-market doc-set on a new project
+│       └── templates/       # PERSONA.md, SPEC.md, TICKETS.md, and the 9-doc go-to-market planning set, as fill-in templates
 ├── agents/
 │   └── tico-cheap.md        # Haiku-pinned subagent for cheap, deterministic sub-tasks
 ├── AGENTS.md.template       # House-rules template — copy into any repo as AGENTS.md
@@ -30,7 +33,7 @@ git -C ~/Development/tico-os pull   # keep it current
 claude --plugin-dir ~/Development/tico-os
 ```
 
-This loads the `summarize-file` and `task-routing` skills and the `tico-cheap` subagent for that session. Skills are namespaced as `/tico-os:summarize-file` etc.
+This loads the `summarize-file`, `task-routing`, and `new-project-setup` skills and the `tico-cheap` subagent for that session. Skills are namespaced as `/tico-os:summarize-file` etc.
 
 ## Using the house rules (Claude Code + Cursor)
 

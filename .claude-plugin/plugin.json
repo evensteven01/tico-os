@@ -1,5 +1,5 @@
 {
   "name": "tico-os",
-  "description": "Personal Claude Code plugin: file-summarization skill, task-routing guidance, and a Haiku-pinned subagent for cheap/deterministic sub-tasks.",
+  "description": "Personal Claude Code plugin: file-summarization skill, task-routing guidance, a new-project bootstrap skill (Coder/Reviewer/GTM-Advisor personas + go-to-market doc-set), and a Haiku-pinned subagent for cheap/deterministic sub-tasks.",
   "version": "0.1.0"
 }
