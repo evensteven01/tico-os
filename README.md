@@ -1,55 +1,67 @@
 # tico-os
 
-Personal Claude Code plugin, plus a reusable house-rules template, synced across machines via git.
+Personal Claude Code plugin for running an app portfolio: an idea pipeline wired to
+[`proj-incubator`](https://github.com/evensteven01/proj-incubator) and the
+[Fordsoft Project Hub](https://github.com/users/evensteven01/projects/7) board, a project
+bootstrap skill, standing house rules, and research subagents. Installed from GitHub, so it
+works the same in VS Code and the terminal.
+
+**→ [CHEATSHEET.md](CHEATSHEET.md)** for how everything fits together and what to type.
+
+## Install
+
+In the Claude panel (VS Code) or the CLI:
+
+```
+/plugin install tico-os --marketplace evensteven01/tico-os
+```
+
+After merging changes here: `/plugin marketplace update tico-os`, then reload.
 
 ## What's in here
 
 ```
 tico-os/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
+│   ├── plugin.json            # Plugin manifest
+│   └── marketplace.json       # Lets GitHub serve this repo as a one-plugin marketplace
 ├── skills/
-│   ├── summarize-file/
-│   │   └── SKILL.md         # Compress a large file to ~15% of its lines, preserving signatures
-│   ├── task-routing/
-│   │   └── SKILL.md         # Guidance for when to delegate to tico-cheap instead of working inline
-│   └── new-project-setup/
-│       ├── SKILL.md         # Bootstraps the Coder/Reviewer/GTM-Advisor persona system + go-to-market doc-set on a new project
-│       └── templates/
-│           ├── *.md             # PERSONA (code repo + GTM), SPEC, TICKETS
-│           ├── go-to-market/    # shared, platform-neutral GTM planning docs + workplan
-│           ├── platforms/       # mobile/ and web/: listing doc (02) + platform-specific inserts
-│           └── scaffolding/     # CI, GitHub labels/milestone script, EAS config, beta landing page
+│   ├── new-idea/              # Phase 1: capture + pitch an idea → spec, issue, board card
+│   ├── evaluate-idea/         # Phases 2–3: scoping, market analysis, Go/Park/Kill
+│   ├── graduate-idea/         # Go idea → code repo + project docs via new-project-setup
+│   ├── portfolio/             # Read-only pipeline report + drift check (board vs. specs)
+│   ├── extract-pattern/       # Project pattern → proj-incubator architecture/ or processes/
+│   ├── new-project-setup/     # Personas, SPEC/TICKETS, go-to-market docs, starter files
+│   │   └── templates/         #   shared docs, platforms/{mobile,web}, scaffolding/
+│   ├── summarize-file/        # Compress a large file, preserving signatures
+│   └── task-routing/          # When to delegate to tico-cheap
 ├── agents/
-│   └── tico-cheap.md        # Haiku-pinned subagent for cheap, deterministic sub-tasks
-├── AGENTS.md.template       # House-rules template — copy into any repo as AGENTS.md
+│   ├── market-researcher.md   # Sonnet: live, sourced competitor research
+│   ├── idea-critic.md         # Sonnet: devil's advocate before scoring
+│   └── tico-cheap.md          # Haiku: cheap structured sub-tasks
+├── hooks/
+│   ├── hooks.json             # SessionStart → session-start.sh
+│   └── session-start.sh       # Loads house rules; pipeline summary in proj-incubator
+├── rules/
+│   └── house-rules.md         # Standing rules injected into every session
+├── scripts/
+│   └── board.sh               # Read/update the Project board by field/option name
+├── AGENTS.md.template         # House-rules template for Cursor/other tools, per repo
+├── CHEATSHEET.md
 └── docs/
     └── architecture.md
 ```
 
-## Using the plugin (Claude Code)
+## Design rule: content in the repos, automation here
 
-On any machine:
+The evaluation playbook and idea template live in `proj-incubator` and the skills read them
+live, so editing a playbook never needs a plugin update. This repo holds only behavior
+(skills, agents, hook, scripts) and the bootstrap templates. Don't copy content in either
+direction; link it.
 
-```bash
-git clone <this-repo-url> ~/Development/tico-os
-git -C ~/Development/tico-os pull   # keep it current
-claude --plugin-dir ~/Development/tico-os
-```
+## Using the house rules outside Claude Code
 
-This loads the `summarize-file`, `task-routing`, and `new-project-setup` skills and the `tico-cheap` subagent for that session. Skills are namespaced as `/tico-os:summarize-file` etc.
-
-## Using the house rules (Claude Code + Cursor)
-
-`AGENTS.md.template` is not auto-applied — it's per-project opt-in:
-
-1. Copy it into a target repo as `AGENTS.md`.
-2. Cursor reads it natively, no further setup.
-3. For Claude Code to pick it up in that repo too, add one line to that repo's own `CLAUDE.md`:
-   ```
-   @AGENTS.md
-   ```
-
-## Why not a symlink installer?
-
-The previous version of this repo (`tico-sync.sh`) symlinked flat `.md` files into `~/.claude/skills/` and `~/.claude/prompts/`. That's not the shape Claude Code actually reads — skills need a `<name>/SKILL.md` directory, and there's no `~/.claude/prompts/` convention. `--plugin-dir` against a synced clone is the supported mechanism for this.
+`rules/house-rules.md` reaches every Claude Code session through the SessionStart hook. For
+Cursor or other tools, `AGENTS.md.template` is the per-project opt-in equivalent: copy it
+into a repo as `AGENTS.md` (Cursor reads it natively; for Claude Code, add `@AGENTS.md` to
+that repo's `CLAUDE.md`).

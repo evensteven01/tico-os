@@ -5,14 +5,28 @@
 - **skills/summarize-file** — a real Claude Code skill. Claude auto-invokes it when a task matches its description (summarizing/compressing a large file), or it can be called directly as `/tico-os:summarize-file`.
 - **skills/task-routing** — not executable logic; it's guidance content that tells Claude when a sub-task fits the `tico-cheap` profile and should be delegated rather than done inline.
 - **skills/new-project-setup** — bootstraps the three-persona system (Coder, Reviewer, GTM
-  Advisor) and the SPEC/TICKETS/go-to-market doc structure onto a new project, first
-  Ships as instructions (`SKILL.md`) plus a `templates/` directory: two persona templates,
+  Advisor) and the SPEC/TICKETS/go-to-market doc structure onto a new project. Ships as instructions (`SKILL.md`) plus a `templates/` directory: two persona templates,
   `SPEC.md`, `TICKETS.md`, a platform-neutral go-to-market doc-set, per-platform
   (`mobile`/`web`) listing docs and inserts, and `scaffolding/` starter files (CI, GitHub
   labels/milestone script, EAS config, beta landing page) — the skill's job is choosing which templates apply,
   gathering real project-specific content through conversation, and refusing to fabricate
   content just to fill a section.
 - **agents/tico-cheap** — a subagent definition pinned to `model: haiku` via its frontmatter. When `task-routing` guidance says to delegate, Claude spawns this agent through the Agent tool. This is the actual cost lever — Claude Code has no automatic complexity-detection router; delegation is deliberate, not automatic.
+- **skills/new-idea, evaluate-idea, graduate-idea, portfolio, extract-pattern** — the idea
+  pipeline. They read the evaluation playbook and idea template live from `proj-incubator`
+  (never a bundled copy), write idea specs there on branches, and move cards on the Project
+  board through `scripts/board.sh`. `graduate-idea` hands off to `new-project-setup`.
+- **agents/market-researcher, agents/idea-critic** — Sonnet-pinned subagents for Phase 3:
+  live competitor research, and the counter-case before scoring. Delegated so raw search
+  results and adversarial reasoning stay out of the main conversation.
+- **scripts/board.sh** — deterministic board access. Resolves field and option *names* to
+  ProjectV2 node IDs at call time, so skills never hold IDs and a renamed column only needs
+  the new name.
+- **hooks/ (SessionStart) + rules/house-rules.md** — standing rules injected into every
+  session regardless of working directory (auto-memory is per-directory, so it can't do
+  this), plus a local pipeline summary when the session starts in `proj-incubator`.
+- **.claude-plugin/marketplace.json** — makes this repo a one-plugin marketplace, so it
+  installs from GitHub and loads in the VS Code extension as well as the CLI.
 - **AGENTS.md.template** — plain house-rules content, not part of the plugin. Copied per-project. Cursor reads `AGENTS.md` natively in all modes; Claude Code needs a `@AGENTS.md` import line in that project's own CLAUDE.md.
 
 ## Delegation flow

@@ -1,0 +1,13 @@
+{
+  "name": "tico-os",
+  "owner": {
+    "name": "Steven Ford"
+  },
+  "plugins": [
+    {
+      "name": "tico-os",
+      "source": "./",
+      "description": "Personal portfolio toolkit: idea pipeline (new-idea, evaluate-idea, graduate-idea, portfolio), project bootstrap, pattern extraction, house rules, and research subagents."
+    }
+  ]
+}
