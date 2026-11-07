@@ -7,13 +7,17 @@ ASO matters more for a zero-ad-budget launch than almost anything else — organ
 search is free traffic with high purchase intent. Someone typing the niche's own pain-point
 phrase into search is already sold on the concept; they just need to find this product.
 
-## Title & subtitle
+Don't start this doc's copy until the name ([01](01-positioning-and-niche.md)) and pricing
+([03](03-pricing-strategy.md)) are locked — title, keywords, and call to action all depend
+on both.
+
+## Title & subtitle (the most important ASO real estate)
 
 <!-- Title pattern: `<Product Name>: <core keyword phrase>` — pack a real search term into
 the title itself, don't waste the highest-weighted search field on a pure brand name.
 Subtitle (iOS) should reinforce with *different* keywords than the title, not repeat them. -->
 
-## Keyword field (iOS) / description keywords (Android — no dedicated field)
+## Keyword field (iOS, 100 characters, comma-separated, no spaces) / description keywords (Android — no dedicated field)
 
 <!-- Draft candidate keyword set, prioritized by relevance to the niche in
 01-positioning-and-niche.md over raw search volume — a term you can actually rank for beats
@@ -34,8 +38,13 @@ autosuggest for each candidate before finalizing; it's free competitive research
    language, not feature-spec language.
 3. **Who it's for** — name the niche directly. This filters as much as it attracts.
 4. **Any genuine differentiator worth a dedicated callout** (privacy, price model, offline,
-   etc.) — stated plainly, not oversold; verify it's still accurate at ship time.
-5. **Call to action** matching the pricing model from [03](03-pricing-strategy.md).
+   etc.) — stated plainly, not oversold. Re-verify it against the code at ship time: a
+   single network-call exception (a feedback form, crash reporting) quietly falsifies an
+   absolute claim like "your data never leaves your device."
+5. **Call to action** matching the pricing model from [03](03-pricing-strategy.md),
+   including any launch discount deadline and any forward-looking promise to early buyers
+   (e.g. grandfathering) — decide explicitly whether that promise goes in the listing now
+   or surfaces later.
 
 ## Screenshots (the actual highest-leverage conversion asset)
 
@@ -50,7 +59,11 @@ convert better than raw screenshots with no text overlay. -->
 privacy nutrition label / data safety form should honestly declare given the actual
 architecture, whether a privacy policy URL is required (usually yes, even for an app that
 collects nothing), and a caution against unverifiable marketing claims ("bank-grade
-encryption," "HIPAA compliant," etc.) that invite scrutiny if not literally true. -->
+encryption," "HIPAA compliant," etc.) that invite scrutiny if not literally true. Also note
+that the seller name is shown publicly on the listing — a personal developer account shows
+your legal name, an organization account shows the company (see the seller-identity
+decision in platforms' early decisions / GTM_WORKPLAN.md). For trust-sensitive categories
+that choice affects conversion, not just paperwork. -->
 
 ## Localization
 

@@ -54,9 +54,12 @@ questions so bugs don't crowd out harder-to-articulate UX feedback. -->
 
 ## Distribution mechanics
 
-<!-- Name the actual pre-release distribution mechanism for this platform (TestFlight +
-Play Internal Testing for mobile; a private beta list/invite code for web/SaaS, etc.) —
-prefer whatever also doubles as a dry run of the real submission/deployment process. -->
+<!-- Name the actual pre-release distribution mechanism — start from
+platforms/<platform>/PLATFORM.md §07. Prefer whatever also doubles as a dry run of the real
+submission/deployment process, and check any store-imposed tester-count/duration rules
+before sizing the tester pool. If the personal network can't cover the niche's segments,
+a small recruiting page (scaffolding/landing/) is the next step — ask first whether the
+network is enough before building one. -->
 
 ## Timeline
 

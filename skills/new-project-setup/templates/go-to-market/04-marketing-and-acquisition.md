@@ -1,7 +1,7 @@
 # Marketing & Acquisition
 
 Parent plan: [MASTER_PLAN.md](MASTER_PLAN.md). Assumes the niche in
-[01](01-positioning-and-niche.md) and store presence in [02](02-app-store-listing.md).
+[01](01-positioning-and-niche.md) and listing/landing presence in [02](02-listing.md).
 
 ## Principle: organic-first unless there's a real budget
 
@@ -36,10 +36,11 @@ category terms are saturated"), a small number of genuinely useful posts or a si
 landing page can rank with very little competition. Consider short-form video/demo content
 if the core mechanic is visually demonstrable in 30 seconds. -->
 
-## Channel 3: store optimization (ongoing, not one-time)
+## Channel 3: listing & search optimization (ongoing, not one-time)
 
-<!-- Treat 02-app-store-listing.md as living, not launch-day-only: revisit keywords
-periodically using store search-term impression data, iterate screenshots based on actual
+<!-- Treat 02-listing.md as living, not launch-day-only: revisit keywords periodically
+using store search-term impression data (mobile) or search-console queries (web), iterate
+screenshots/landing copy based on actual
 conversion data once there's traffic, and actively solicit reviews from early happy users
 at the right moment (right after a positive "aha" moment in the product, not on first
 open). -->
@@ -48,12 +49,12 @@ open). -->
 
 <!-- Not recommended until organic conversion is measured. Once there's real data, name the
 highest-efficiency paid channel for this category (often a search-ads product for the
-relevant app store, since it captures existing high-intent search rather than creating
+relevant app store or a search engine, since it captures existing high-intent search rather than creating
 demand) and the threshold that would justify it (e.g. a subscription/recurring-LTV model,
 or a healthy enough per-unit margin). -->
 
 ## Cadence recommendation
 
 <!-- A realistic, staged timeline: pre-launch community presence building, launch-day
-channel activation, following-weeks content/engagement, ongoing ASO iteration. Don't treat
+channel activation, following-weeks content/engagement, ongoing listing/search iteration. Don't treat
 launch as a single day. -->

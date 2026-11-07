@@ -25,30 +25,31 @@ content here — this section should be a pointer plus whatever launch-blocking 
 genuinely specific to *this* checklist (e.g. "ship on both platforms, not one," if that's a
 live question for this project). -->
 
-## Operational / store-submission readiness
+## Operational / launch readiness
 
-<!-- Checklist, adapted to the actual distribution channel(s) — app store(s), web, package
-registry, etc. Common items when targeting a mobile app store: -->
+<!-- Shared items first, then the platform-specific items from
+platforms/<platform>/PLATFORM.md §05, merged in here at setup time. Delete any item that
+genuinely doesn't apply rather than leaving it unchecked forever. -->
 
-- [ ] **Product name locked** and checked for store-name collisions (see
-      [01](01-positioning-and-niche.md)).
-- [ ] **App icon** — final, all required sizes/formats per platform.
-- [ ] **Screenshots** produced per [02](02-app-store-listing.md).
-- [ ] **Privacy Policy URL** — required even for an app that collects nothing; write a
-      short, honest policy reflecting actual data handling.
+- [ ] **Product name locked** and collision/trademark-checked (see
+      [01](01-positioning-and-niche.md)) — final careful pass, not the brainstorming
+      gut-checks.
+- [ ] **Seller identity decided** — personal vs. a business entity (e.g. an LLC). It
+      determines what name buyers see and what account/payment setup requires, and forming
+      an entity has lead time; decide it before account setup, not during.
+- [ ] **Privacy Policy URL** — required even for a product that collects nothing; write a
+      short, honest policy reflecting actual data handling, including any single
+      network-call exception (feedback form, crash reporting).
 - [ ] **Terms of Use / EULA** — explicit decision (custom vs. platform default), not
       discovered at submission time.
 - [ ] **Support URL / contact method.**
-- [ ] **Privacy nutrition label / data safety form** — filled out accurately against actual
-      architecture, revisited the moment that architecture changes (e.g. a new network call
-      is added).
-- [ ] **Age rating questionnaire.**
-- [ ] **In-app purchase / payment configuration** matching [03](03-pricing-strategy.md),
-      sandbox-tested before submission.
-- [ ] **Developer accounts active** with correct legal/tax/banking info — payout
-      verification can take days, budget lead time before the submission crunch.
-- [ ] **Crash reporting** wired in so launch-week issues are visible instead of discovered
-      via reviews.
+- [ ] **Payment configuration** matching [03](03-pricing-strategy.md), tested end to end in
+      sandbox/test mode before launch.
+- [ ] **Crash/error reporting** wired in so launch-week issues are visible instead of
+      discovered via reviews.
+- [ ] **Feedback channel actually delivers** — if the product has an in-app feedback form,
+      confirm submissions reach you (a placeholder form ID silently drops everything).
+<!-- PLATFORM ITEMS: merge platforms/<platform>/PLATFORM.md §05 here. -->
 
 ## Beta testing (recommended before public submission)
 

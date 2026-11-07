@@ -52,7 +52,57 @@ incumbent — that invites a fight on their turf instead of the niche's actual p
 
 ## Naming
 
-<!-- Note the current placeholder name (repo/package name) and what it should telegraph
-instead — usually a word tied to the core differentiator rather than a generic category
-word that drowns in search. Flag a name-collision/trademark check as a five-minute search
-to do before locking it, not a legal engagement. -->
+<!-- Note the current placeholder name (repo/package name) and what the real name should
+telegraph — usually a word tied to the core differentiator or feeling rather than a generic
+category word that drowns in search. Until it locks, use an internal codename in
+package/app config so the repo placeholder doesn't leak into builds. -->
+
+### Collision rule
+
+A store or search hit isn't automatically disqualifying — what matters is whether the
+colliding product sits in the *same or adjacent category*, which creates real
+user-confusion and trademark risk, versus an unrelated category, which is basically
+harmless no matter how many hits show up. Record the check result for every candidate.
+
+### Candidate shortlist
+
+<!-- Keep every candidate in one of these tables so nothing is re-proposed or re-checked
+from scratch. Columns: Name | Why | Collision check. -->
+
+**Live candidates**
+
+| Name | Why | Collision check |
+|---|---|---|
+
+**Dropped — same/adjacent-category collision**
+
+| Name | Why it was appealing | Why dropped |
+|---|---|---|
+
+**Deprioritized, not disqualified** (no direct collision, but generic, borderline, or hard
+to own in search)
+
+| Name | Why | Status |
+|---|---|---|
+
+**Being considered — not yet collision-checked**
+
+<!-- Holding area. Promote to Live or Dropped once checked. -->
+
+### Raw word bank
+
+<!-- Uncleaned vocabulary captured while brainstorming, so nothing gets lost while
+combining words into candidates: the product's core metaphor(s) in English and other
+languages, plus any personal/cultural sources worth drawing on (places, folklore, words
+with personal meaning). Not organized, not checked. -->
+
+### Outside feedback
+
+<!-- Reactions from other people (or other AI reviewers) on the live/favorite candidates —
+kept separate from collision data, and attributed, so opinions don't masquerade as checks. -->
+
+**Plan:** don't pick from the armchair — run the live candidates by real people once
+they've actually used the product (see [07-beta-testing-program.md](07-beta-testing-program.md));
+reaction to a name pre-use vs. post-use can differ meaningfully. Once a name is chosen, do a
+final, careful store/domain collision pass and a basic trademark search before committing —
+the brainstorming checks are quick gut-checks, not a substitute.
