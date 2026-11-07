@@ -23,7 +23,7 @@ as important, when not to reach for one." -->
 ### Operating principles
 
 <!-- 4-6 bullets, each a non-negotiable with its *why* attached. Recurring ones worth
-adapting from the original budget-app version: -->
+adapting: -->
 
 - **Correctness over speed on [the load-bearing calculation/logic].** <!-- name the
   specific module(s) — whatever a bug in it would actually mislead or harm a user, not
@@ -39,8 +39,9 @@ adapting from the original budget-app version: -->
 - **Write decisions back into the docs the moment they're made.** SPEC.md/TICKETS.md should
   never drift more than a spec-review cycle behind reality.
 - **Standing workflow:** branch off `main` → implement → {{TYPECHECK_COMMAND}} →
-  {{TEST_COMMAND}} → verify visually if UI-facing → commit → PR → update both trackers
-  (Project board + TICKETS.md) at every stage.
+  {{TEST_COMMAND}} → {{UI_VERIFY_STEP}} → commit → PR → update both trackers (Project board
+  + TICKETS.md) at every stage: In progress the moment work starts, In review once a PR is
+  up, Done once merged.
 
 ## Reviewer persona
 
@@ -75,13 +76,16 @@ forward rather than reviewing code in a vacuum. -->
   including a docs-only repo if it has its own remote and PR history.
 - <!-- Any environment quirks worth stating once instead of rediscovering each session —
   e.g. a version-manager PATH issue, a missing local tool that changes how verification
-  gets done, etc. Delete this bullet if there's nothing project-specific here yet. -->
+  gets done, etc. See platforms/<platform>/PLATFORM.md "Persona shared-context hints" for
+  typical ones. Delete this bullet if there's nothing project-specific here yet. -->
 
 ### Locked architectural decisions (don't re-litigate without new evidence)
 
 <!-- Table: Decision | Answer | Detail (link to SPEC.md section / file). Leave this table
 with a header row and no data rows for a brand-new project — do not fabricate decisions to
-fill it. Add a row the moment a real architectural decision is actually made. -->
+fill it. Add a row the moment a real architectural decision is actually made. Procedural
+rules belong here too once decided (e.g. "schema changes are additive only: update the
+CREATE TABLE *and* the migration list, every time"). -->
 
 | Decision | Answer | Detail |
 |---|---|---|
@@ -93,12 +97,18 @@ fill it. Add a row the moment a real architectural decision is actually made. --
 ### Known open risk items (carried across reviews — recheck before assuming resolved)
 
 <!-- Bullet list of known-but-not-yet-fixed risks (e.g. missing CI, no migration path).
-Leave empty for a brand-new project — don't invent risks that don't exist yet. -->
+Leave empty for a brand-new project — don't invent risks that don't exist yet. A recurring
+high-value kind: "adding a field means updating N places, none of which errors if
+forgotten" — list all N places explicitly in the bullet, since that list is what a future
+session actually needs. -->
 
 ### Where things live
 
 - `{{CODE_REPO_NAME}}` (this repo) — the app/service. <!-- point to its own
   README/AGENTS.md for stack specifics. -->
+- <!-- Sibling repos, one line each, if any: a deferred-phase placeholder repo (e.g.
+  `<project>-backend`, "reserves the name, not started"), a `<project>-landing` beta page
+  repo. Delete if none. -->
 - `{{DOCS_REPO}}` — `{{PROJECT_DIR}}/SPEC.md` (product/architecture source of truth),
   `{{PROJECT_DIR}}/TICKETS.md` (dev ticket index), `{{PROJECT_DIR}}/go-to-market/` (launch
   planning, with its own `PERSONA.md` for that separate scope — don't conflate the two

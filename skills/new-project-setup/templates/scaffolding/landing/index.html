@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{PRODUCT_NAME}} — Private Beta</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #faf9f6;
+    --bg-card: #ffffff;
+    --text: #1c1c1a;
+    --text-muted: #5c5a54;
+    --border: #e4e1d8;
+    --accent: #1f6f5c;
+    --accent-text: #ffffff;
+    --tag-bg: #eef3ea;
+    --tag-text: #2f5d44;
+    --no-bg: #faeceb;
+    --no-text: #8a3b33;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171a;
+      --bg-card: #1d2023;
+      --text: #ecebe6;
+      --text-muted: #a6a69d;
+      --border: #30332f;
+      --accent: #4fb89a;
+      --accent-text: #0c2420;
+      --tag-bg: #203229;
+      --tag-text: #8fd6b4;
+      --no-bg: #332220;
+      --no-text: #e29089;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171a;
+    --bg-card: #1d2023;
+    --text: #ecebe6;
+    --text-muted: #a6a69d;
+    --border: #30332f;
+    --accent: #4fb89a;
+    --accent-text: #0c2420;
+    --tag-bg: #203229;
+    --tag-text: #8fd6b4;
+    --no-bg: #332220;
+    --no-text: #e29089;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 20px 80px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin: 0 0 32px;
+    max-width: 50ch;
+  }
+  .cta {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 26px;
+    border-radius: 10px;
+  }
+  .cta:active { transform: translateY(1px); }
+  .cta-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+  section {
+    margin-top: 56px;
+  }
+  h2 {
+    font-size: 21px;
+    margin: 0 0 16px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .example-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .example-row:last-child { border-bottom: none; }
+  .example-row .label { color: var(--text-muted); }
+  .example-row .value { font-weight: 600; white-space: nowrap; }
+  .example-result {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .example-result .label { font-size: 15px; font-weight: 600; }
+  .example-result .value { font-size: 26px; font-weight: 700; color: var(--accent); }
+
+  .segments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .segments { grid-template-columns: 1fr; }
+  }
+  .seg-card {
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+  }
+  .seg-yes { background: var(--tag-bg); color: var(--tag-text); }
+  .seg-no { background: var(--no-bg); color: var(--no-text); }
+  .seg-card ul { margin: 8px 0 0; padding-left: 18px; }
+  .seg-card li { margin-bottom: 4px; }
+  .seg-card strong { display: block; margin-bottom: 2px; font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; }
+
+  .expect-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 15px;
+  }
+  .expect-list li { margin-bottom: 10px; }
+
+  .privacy-note {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .privacy-note strong { color: var(--text); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<!--
+  Beta-recruitment landing page. Fill every {{PLACEHOLDER}} from the project's docs:
+  headline/sub from go-to-market/01 (positioning statement), fit/not-fit from 01's niche,
+  "what testing involves" from 07, privacy note from SPEC.md §7. Re-check every claim
+  against the code before publishing. Delete any section that doesn't apply.
+-->
+<div class="wrap">
+
+  <div class="eyebrow">Private Beta — Applications Open</div>
+  <h1>{{HEADLINE}}</h1>
+  <p class="sub">{{SUBHEADLINE}}</p>
+
+  <a class="cta" href="{{APPLY_FORM_URL}}" id="apply-link" target="_blank" rel="noopener noreferrer">{{CTA_TEXT}}</a>
+  <div class="cta-note">{{CTA_NOTE}}</div>
+
+  <section>
+    <h2>How it works</h2>
+    <!-- A single worked example with real-looking numbers usually beats feature bullets.
+         Add or remove rows as needed. -->
+    <div class="card">
+      <div class="example-row">
+        <span class="label">{{EXAMPLE_LABEL_1}}</span>
+        <span class="value">{{EXAMPLE_VALUE_1}}</span>
+      </div>
+      <div class="example-row">
+        <span class="label">{{EXAMPLE_LABEL_2}}</span>
+        <span class="value">{{EXAMPLE_VALUE_2}}</span>
+      </div>
+      <div class="example-result">
+        <span class="label">{{EXAMPLE_RESULT_LABEL}}</span>
+        <span class="value">{{EXAMPLE_RESULT_VALUE}}</span>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:16px; font-size:15px;">{{HOW_IT_WORKS_PARAGRAPH}}</p>
+  </section>
+
+  <section>
+    <h2>Is this for you?</h2>
+    <div class="segments">
+      <div class="seg-card seg-yes">
+        <strong>A good fit</strong>
+        <ul>
+          <li>{{FIT_1}}</li>
+          <li>{{FIT_2}}</li>
+          <li>{{FIT_3}}</li>
+        </ul>
+      </div>
+      <div class="seg-card seg-no">
+        <strong>Probably not</strong>
+        <ul>
+          <li>{{NOT_FIT_1}}</li>
+          <li>{{NOT_FIT_2}}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What testing actually involves</h2>
+    <div class="card">
+      <ul class="expect-list">
+        <li><strong>{{STEP_1_TITLE}}</strong> — {{STEP_1_DETAIL}}</li>
+        <li><strong>{{STEP_2_TITLE}}</strong> — {{STEP_2_DETAIL}}</li>
+        <li><strong>{{STEP_3_TITLE}}</strong> — {{STEP_3_DETAIL}}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="privacy-note"><strong>On privacy:</strong> {{PRIVACY_NOTE}}</p>
+  </section>
+
+  <footer>{{PRODUCT_NAME}} — {{ONE_LINE_DESCRIPTION}}, currently in private beta.</footer>
+
+</div>
+</body>
+</html>

@@ -36,7 +36,8 @@ boundary values). -->
 
 ## 2. Manual device/environment QA matrix
 
-<!-- Table or list: minimum real-hardware/real-environment coverage (not just
+<!-- Start from platforms/<platform>/PLATFORM.md §09's matrix. Table or list: minimum
+real-hardware/real-environment coverage (not just
 simulator/local dev) — for each, verify the full core loop, empty states, form validation
 errors, and behavior under interruption (backgrounded, force-closed, network dropped, etc.
 as applicable). -->

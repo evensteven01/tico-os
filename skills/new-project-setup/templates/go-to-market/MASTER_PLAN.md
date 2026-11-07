@@ -22,7 +22,7 @@ this, explicitly. -->
 team) state that explicitly and draw the consequence: no leniency on launch-readiness
 quality, because the "ship rough, fix later" tradeoff assumed dev was the scarce resource.
 If instead dev IS the bottleneck here, say that instead and adjust downstream docs'
-expectations accordingly — don't copy the budget-app assumption uncritically. Either way,
+expectations accordingly — don't copy another project's assumption uncritically. Either way,
 be explicit that this working assumption does NOT license scope creep beyond what SPEC.md's
 current build phase defines. -->
 
@@ -31,7 +31,7 @@ current build phase defines. -->
 | Doc | Answers |
 |---|---|
 | [01-positioning-and-niche.md](01-positioning-and-niche.md) | Who is this for, and why would *they specifically* care? |
-| [02-app-store-listing.md](02-app-store-listing.md) | How do we describe it so a stranger stops and taps/clicks? |
+| [02-listing.md](02-listing.md) | How do we describe it so a stranger stops and taps/clicks? (store listing or landing page, per platform) |
 | [03-pricing-strategy.md](03-pricing-strategy.md) | What do we charge, and why that model? |
 | [04-marketing-and-acquisition.md](04-marketing-and-acquisition.md) | How do people actually find it? |
 | [05-launch-readiness-checklist.md](05-launch-readiness-checklist.md) | How do we know it's ready, and what has to happen before we ship? |
@@ -40,6 +40,7 @@ current build phase defines. -->
 | [08-mvp-definition.md](08-mvp-definition.md) | Exactly what feature set ships in v1? |
 | [09-readiness-testing-plan.md](09-readiness-testing-plan.md) | How is each MVP item actually verified? |
 | [GTM_TICKETS.md](GTM_TICKETS.md) | Point-in-time index of the actual `[GTM]`-labeled GitHub issues |
+| [GTM_WORKPLAN.md](GTM_WORKPLAN.md) | Temporary execution checklist sequencing the open `[GTM]` tickets (created when Phase B/C work starts, deleted when done) |
 
 ## The core strategic bet
 
@@ -79,6 +80,17 @@ list — both index the same repo's issues, just partitioned by kind. Product/en
 gaps discovered *during* GTM planning stay plain numbered dev tickets in TICKETS.md, not
 `[GTM]` ones — the prefix is for marketing/business/launch-operations work, not engineering
 work that GTM planning happened to surface.
+
+## Seeing everything required before launch: the v1.0 Launch milestone
+
+The `[GTM]` prefix/label and TICKETS.md's `Tier` column each answer a different question
+(what *kind* of work is this; which *pricing tier* does it unlock) — neither answers "is this
+required before launch." That's what the **v1.0 Launch** GitHub milestone on
+`{{CODE_REPO_NAME}}` is for: it spans both TICKETS.md and GTM_TICKETS.md, carries every P0
+engineering ticket and every Phase B/C GTM ticket, and shows a native open/closed progress
+bar instead of requiring a point-in-time doc read. Phase D/E GTM tickets (launch-day
+execution, post-launch growth) are deliberately left off — they happen at/after launch, not
+before it. Reach for the milestone for "what's left," not a fresh read of both ticket files.
 
 ## Open decisions that need input
 

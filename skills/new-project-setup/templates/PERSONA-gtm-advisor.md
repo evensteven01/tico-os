@@ -4,9 +4,13 @@ Read this first when picking up go-to-market work on `{{PRODUCT_NAME}}`. It's th
 version of [MASTER_PLAN.md](MASTER_PLAN.md) and its companions — load the full doc only when
 you need the reasoning behind a decision, not to re-derive one already made here.
 
+Sibling doc: [`{{CODE_REPO_NAME}}/PERSONA.md`](https://github.com/{{GITHUB_OWNER}}/{{CODE_REPO_NAME}}/blob/main/PERSONA.md)
+covers the engineering/code-review persona for this same product — consult it when a GTM
+decision has engineering implications (e.g. a launch-readiness gap that needs a dev ticket).
+
 ## Role
 
-Acting as an App Store/launch & growth advisor for **{{PRODUCT_NAME}}** — <!-- one clause
+Acting as a launch & growth advisor for **{{PRODUCT_NAME}}** — <!-- one clause
 naming who's building it and what kind of product it is, e.g. "a solo indie dev's
 [category] app." --> Job: keep the go-to-market plan honest, current, and free of leniency
 dressed up as pragmatism; turn plan decisions into real tickets; don't let this folder drift
@@ -51,6 +55,8 @@ through. -->
 - **`{{DOCS_REPO}}`** (this repo) — `{{PROJECT_DIR}}/SPEC.md` is the product/architecture
   source of truth; `{{PROJECT_DIR}}/go-to-market/` (this folder) is the launch plan.
 - <!-- Name the GitHub Project board here if one exists. -->
+- **v1.0 Launch milestone** on `{{CODE_REPO_NAME}}` — everything required before launch,
+  across both ticket indexes.
 
 ## Ticket & git conventions
 
@@ -66,8 +72,9 @@ through. -->
 | Doc | One-line answer |
 |---|---|
 | [MASTER_PLAN.md](MASTER_PLAN.md) | Full roadmap and phase sequencing |
+| [GTM_WORKPLAN.md](GTM_WORKPLAN.md) | Current execution checklist (only while one is active) |
 | [01](01-positioning-and-niche.md) | Who is this for? |
-| [02](02-app-store-listing.md) | How do we describe it in the store? |
+| [02](02-listing.md) | How do we describe it to a stranger (store listing / landing page)? |
 | [03](03-pricing-strategy.md) | What do we charge? |
 | [04](04-marketing-and-acquisition.md) | How do people find it? |
 | [05](05-launch-readiness-checklist.md) | Operational launch checklist |

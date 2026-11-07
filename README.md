@@ -15,7 +15,11 @@ tico-os/
 │   │   └── SKILL.md         # Guidance for when to delegate to tico-cheap instead of working inline
 │   └── new-project-setup/
 │       ├── SKILL.md         # Bootstraps the Coder/Reviewer/GTM-Advisor persona system + go-to-market doc-set on a new project
-│       └── templates/       # PERSONA.md, SPEC.md, TICKETS.md, and the 9-doc go-to-market planning set, as fill-in templates
+│       └── templates/
+│           ├── *.md             # PERSONA (code repo + GTM), SPEC, TICKETS
+│           ├── go-to-market/    # shared, platform-neutral GTM planning docs + workplan
+│           ├── platforms/       # mobile/ and web/: listing doc (02) + platform-specific inserts
+│           └── scaffolding/     # CI, GitHub labels/milestone script, EAS config, beta landing page
 ├── agents/
 │   └── tico-cheap.md        # Haiku-pinned subagent for cheap, deterministic sub-tasks
 ├── AGENTS.md.template       # House-rules template — copy into any repo as AGENTS.md

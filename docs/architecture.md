@@ -6,9 +6,10 @@
 - **skills/task-routing** — not executable logic; it's guidance content that tells Claude when a sub-task fits the `tico-cheap` profile and should be delegated rather than done inline.
 - **skills/new-project-setup** — bootstraps the three-persona system (Coder, Reviewer, GTM
   Advisor) and the SPEC/TICKETS/go-to-market doc structure onto a new project, first
-  developed for `budget-app`. Ships as instructions (`SKILL.md`) plus a `templates/`
-  directory of fill-in `.md` files (two persona templates, `SPEC.md`, `TICKETS.md`, and the
-  nine-doc go-to-market planning set) — the skill's job is choosing which templates apply,
+  Ships as instructions (`SKILL.md`) plus a `templates/` directory: two persona templates,
+  `SPEC.md`, `TICKETS.md`, a platform-neutral go-to-market doc-set, per-platform
+  (`mobile`/`web`) listing docs and inserts, and `scaffolding/` starter files (CI, GitHub
+  labels/milestone script, EAS config, beta landing page) — the skill's job is choosing which templates apply,
   gathering real project-specific content through conversation, and refusing to fabricate
   content just to fill a section.
 - **agents/tico-cheap** — a subagent definition pinned to `model: haiku` via its frontmatter. When `task-routing` guidance says to delegate, Claude spawns this agent through the Agent tool. This is the actual cost lever — Claude Code has no automatic complexity-detection router; delegation is deliberate, not automatic.
