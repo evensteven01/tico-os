@@ -3,6 +3,7 @@
 How the portfolio system fits together, and what to type in the Claude panel in VS Code.
 Every command below is a slash command, but you can also just describe what you want
 ("I have an app idea…", "how's the portfolio looking?") and the right skill triggers.
+For the full explanation of how and why it all works, read [GUIDE.md](GUIDE.md).
 
 ## The big picture
 

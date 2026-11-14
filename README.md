@@ -6,7 +6,11 @@ Personal Claude Code plugin for running an app portfolio: an idea pipeline wired
 bootstrap skill, standing house rules, and research subagents. Installed from GitHub, so it
 works the same in VS Code and the terminal.
 
-**→ [CHEATSHEET.md](CHEATSHEET.md)** for how everything fits together and what to type.
+**→ [GUIDE.md](GUIDE.md)** explains how the whole system works, from idea to launched app,
+in plain language for engineers and non-engineers alike. Start there.
+
+**→ [CHEATSHEET.md](CHEATSHEET.md)** is the one-page reference: commands, setup,
+troubleshooting.
 
 ## Install
 
@@ -47,7 +51,8 @@ tico-os/
 ├── scripts/
 │   └── board.sh               # Read/update the Project board by field/option name
 ├── AGENTS.md.template         # House-rules template for Cursor/other tools, per repo
-├── CHEATSHEET.md
+├── GUIDE.md                   # How the whole system works, in plain language
+├── CHEATSHEET.md              # One-page command reference
 └── docs/
     └── architecture.md
 ```
