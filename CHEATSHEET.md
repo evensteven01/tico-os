@@ -93,22 +93,26 @@ Needs a `gh` token with the `project` scope.
 
 ## Setup (once per machine)
 
-In the Claude panel in VS Code:
+From a terminal (the VS Code chat doesn't accept `/plugin` commands):
 
-```
-/plugin install tico-os --marketplace evensteven01/tico-os
+```bash
+~/Development/tico-os/scripts/plugin.sh install
 ```
 
-Then reload the window. Check it worked: typing `/tico-os:` should list the commands.
+Then reload the window (Cmd+Shift+P → Developer: Reload Window) and open a new chat. Check
+it worked: typing `/tico-os:` should list the commands. Full details are in
+[INSTALL.md](INSTALL.md).
 
 Optional: if `proj-incubator` isn't at `~/Development/proj-incubator`, set
 `TICO_INCUBATOR_DIR` in your shell profile.
 
 ## Changing tico-os
 
-1. Edit on a branch in `~/Development/tico-os` → PR → merge.
-2. Pull the new version into Claude Code: `/plugin marketplace update tico-os`, then reload
-   the window.
+1. Edit on a branch in `~/Development/tico-os`, **bump `version` in
+   `.claude-plugin/plugin.json`**, then PR → merge. Without a bump, `update` sees nothing
+   new.
+2. Pull the new version into Claude Code: `scripts/plugin.sh update`, then reload the window
+   and open a new chat.
 
 What lives where, when you want to change something:
 
@@ -124,8 +128,8 @@ What lives where, when you want to change something:
 
 | Symptom | Fix |
 |---|---|
-| `/tico-os:` commands don't appear | `/plugin` → check tico-os is installed and enabled; reload the window |
-| Changes merged to tico-os aren't showing up | `/plugin marketplace update tico-os`, reload |
+| `/tico-os:` commands don't appear | `scripts/plugin.sh status` → check it's installed and enabled; reload the window; open a new chat |
+| Changes merged to tico-os aren't showing up | Check the PR bumped the version; `scripts/plugin.sh update`; reload; new chat |
 | `board.sh` fails with a permissions error | `gh auth status` should list the `project` scope; `gh auth refresh -s project` |
 | `board.sh: no option '…'` | The column was renamed or mistyped; `board.sh options` shows current names |
 | Portfolio report shows drift | Expected after hand edits; let `/tico-os:portfolio` fix it, or update the spec and card together |

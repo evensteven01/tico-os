@@ -12,15 +12,18 @@ in plain language for engineers and non-engineers alike. Start there.
 **→ [CHEATSHEET.md](CHEATSHEET.md)** is the one-page reference: commands, setup,
 troubleshooting.
 
+**→ [INSTALL.md](INSTALL.md)** covers installing, updating and troubleshooting the plugin.
+
 ## Install
 
-In the Claude panel (VS Code) or the CLI:
-
+```bash
+scripts/plugin.sh install   # once per machine
+scripts/plugin.sh update    # after merging changes here (bump the version in plugin.json)
 ```
-/plugin install tico-os --marketplace evensteven01/tico-os
-```
 
-After merging changes here: `/plugin marketplace update tico-os`, then reload.
+Then reload VS Code and open a new chat. The VS Code chat doesn't accept `/plugin`
+commands, which is why this goes through a script; [INSTALL.md](INSTALL.md) explains the
+details.
 
 ## What's in here
 
@@ -49,10 +52,12 @@ tico-os/
 ├── rules/
 │   └── house-rules.md         # Standing rules injected into every session
 ├── scripts/
-│   └── board.sh               # Read/update the Project board by field/option name
+│   ├── board.sh               # Read/update the Project board by field/option name
+│   └── plugin.sh              # Install / update / status for this plugin
 ├── AGENTS.md.template         # House-rules template for Cursor/other tools, per repo
 ├── GUIDE.md                   # How the whole system works, in plain language
 ├── CHEATSHEET.md              # One-page command reference
+├── INSTALL.md                 # Install, update, troubleshooting
 └── docs/
     └── architecture.md
 ```
