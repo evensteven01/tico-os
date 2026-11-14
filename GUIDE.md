@@ -376,8 +376,10 @@ Because content and automation are kept apart, most improvements are simple docu
 - **To change what an idea spec contains**, edit [`ideas/TEMPLATE-app-spec.md`](https://github.com/evensteven01/proj-incubator/blob/main/ideas/TEMPLATE-app-spec.md).
   Keep it in step with the playbook, section for section.
 - **To change how Claude behaves**, including its interview style, the standing rules or
-  the project templates, edit this repository. After that change is merged, run
-  `/plugin marketplace update tico-os` in the Claude panel and reload VS Code to pick it up.
+  the project templates, edit this repository and raise the version number in
+  `.claude-plugin/plugin.json`. After the change is merged, run `scripts/plugin.sh update`
+  from a terminal and reload VS Code to pick it up. [INSTALL.md](INSTALL.md) has the
+  details.
 
 As with everything else, changes to the system itself go through a branch and a pull
 request.
