@@ -17,5 +17,14 @@ Standing rules for every repo in the portfolio. Project-specific rules live in e
   a future session will treat anything written down as decided.
 - **Portfolio map**: ideas and shared playbooks live in `proj-incubator`; per-project specs
   and go-to-market docs live in `project-docs/<project>/`; tooling (this plugin) lives in
-  `tico-os`. The portfolio board is the Fordsoft Project Hub (GitHub Project #7); use
-  `${CLAUDE_PLUGIN_ROOT}/scripts/board.sh` to read or update it.
+  `tico-os`, installed at `${CLAUDE_PLUGIN_ROOT}` (paths in its skills are relative to that).
+- **Two boards.** The **Fordsoft Project Hub** (GitHub Project #7) has one card per app for
+  its whole life: Inbox → Idea Backlog → Scoped / Tech Spec → In Development → Beta →
+  Live / Launched → Sunset → Archived. **Fordsoft Development** (#5) holds the work: every
+  issue for every app, tagged with **App** (`Shared` for work not tied to one app). Read and
+  update both with `${CLAUDE_PLUGIN_ROOT}/scripts/board.sh` (`--board dev` for the work
+  board).
+- **Issues**: every issue for an app goes on its **main code repo**, go-to-market ones
+  included, and onto Fordsoft Development with App set. The board is the only ticket list;
+  don't maintain markdown ticket lists. Priority is `P0` / `P1` / `P2` on both boards.
+  Raw app ideas become `[Idea]` issues in `proj-incubator`, starting in the Hub's Inbox.

@@ -12,19 +12,32 @@
   gathering real project-specific content through conversation, and refusing to fabricate
   content just to fill a section.
 - **agents/tico-cheap** — a subagent definition pinned to `model: haiku` via its frontmatter. When `task-routing` guidance says to delegate, Claude spawns this agent through the Agent tool. This is the actual cost lever — Claude Code has no automatic complexity-detection router; delegation is deliberate, not automatic.
-- **skills/new-idea, evaluate-idea, graduate-idea, portfolio, extract-pattern** — the idea
-  pipeline. They read the evaluation playbook and idea template live from `proj-incubator`
-  (never a bundled copy), write idea specs there on branches, and move cards on the Project
-  board through `scripts/board.sh`. `graduate-idea` hands off to `new-project-setup`.
+- **skills/new-idea, evaluate-idea, graduate-idea, adopt-project, launch-retro, portfolio,
+  extract-pattern** — the app life cycle. They read the playbook and idea template live from
+  `proj-incubator` (never a bundled copy), write specs there on branches, and move cards on
+  both boards through `scripts/board.sh`. `graduate-idea` hands off to `new-project-setup`;
+  both it and `adopt-project` follow `procedures/connect-project.md`.
+- **procedures/connect-project.md** — not a skill: a shared procedure two skills follow
+  (Hub card body, work-board App option and view, repo and docs links), kept in one place
+  so the two can't drift apart.
 - **agents/market-researcher, agents/idea-critic** — Sonnet-pinned subagents for Phase 3:
   live competitor research, and the counter-case before scoring. Delegated so raw search
   results and adversarial reasoning stay out of the main conversation.
-- **scripts/board.sh** — deterministic board access. Resolves field and option *names* to
-  ProjectV2 node IDs at call time, so skills never hold IDs and a renamed column only needs
-  the new name.
+- **scripts/board.sh** — deterministic access to both boards (Hub #7, Fordsoft Development
+  #5). Resolves field and option *names* to ProjectV2 node IDs at call time, so skills never
+  hold IDs and a renamed column only needs the new name. Validates every value before
+  writing; refuses a work-board card without an App. `app-add` edits single-select options
+  by re-sending existing option IDs (so cards keep their values) and creates the app's
+  filtered view through the GraphQL API.
+- **templates/scaffolding/github/setup-github.sh --app** — per-repo board wiring: labels,
+  launch milestone, repo↔board link, every issue onto the work board (existing cards keep
+  their Status). `--dry-run` previews.
+- **scripts/plugin.sh** — install/update/status through the Claude Code CLI bundled with the
+  VS Code extension, since the VS Code chat doesn't accept `/plugin`.
 - **hooks/ (SessionStart) + rules/house-rules.md** — standing rules injected into every
   session regardless of working directory (auto-memory is per-directory, so it can't do
-  this), plus a local pipeline summary when the session starts in `proj-incubator`.
+  this), plus a pipeline summary when the session starts in `proj-incubator`: spec headers
+  (local) and the Hub's Inbox (one `board.sh` call, capped at 5 s, silent on failure).
 - **.claude-plugin/marketplace.json** — makes this repo a one-plugin marketplace, so it
   installs from GitHub and loads in the VS Code extension as well as the CLI.
 - **AGENTS.md.template** — plain house-rules content, not part of the plugin. Copied per-project. Cursor reads `AGENTS.md` natively in all modes; Claude Code needs a `@AGENTS.md` import line in that project's own CLAUDE.md.

@@ -7,7 +7,7 @@ both in sync with reality the same way `SPEC.md` is — update them when a decis
 solidifies, don't let either drift into aspirational fiction.
 
 This plan is written against the product as it actually is today per
-`{{PROJECT_DIR}}/SPEC.md` and `{{PROJECT_DIR}}/TICKETS.md`:
+`{{PROJECT_DIR}}/SPEC.md` and the open issues on the board:
 
 <!-- 2-4 bullets: current phase/architecture in one line, what core loop is built vs. open,
 what's genuinely not started yet (no store listing, no pricing, no name locked, etc.). -->
@@ -39,7 +39,6 @@ current build phase defines. -->
 | [07-beta-testing-program.md](07-beta-testing-program.md) | How do we use a small trusted group to de-risk launch before it's public? |
 | [08-mvp-definition.md](08-mvp-definition.md) | Exactly what feature set ships in v1? |
 | [09-readiness-testing-plan.md](09-readiness-testing-plan.md) | How is each MVP item actually verified? |
-| [GTM_TICKETS.md](GTM_TICKETS.md) | Point-in-time index of the actual `[GTM]`-labeled GitHub issues |
 | [GTM_WORKPLAN.md](GTM_WORKPLAN.md) | Temporary execution checklist sequencing the open `[GTM]` tickets (created when Phase B/C work starts, deleted when done) |
 
 ## The core strategic bet
@@ -73,20 +72,18 @@ what doc(s) it depends on and what "done" means for that phase — not just a la
 ## Ticket labeling convention
 
 Go-to-market tickets carry a **`[GTM]`** title prefix and a `go-to-market` GitHub label on
-`{{CODE_REPO_NAME}}`, so they're visually and filterably distinct from plain numbered dev
-tickets in `{{PROJECT_DIR}}/TICKETS.md`. They're tracked in [GTM_TICKETS.md](GTM_TICKETS.md)
-in this folder, mirroring TICKETS.md's format, rather than interleaved into the dev ticket
-list — both index the same repo's issues, just partitioned by kind. Product/engineering
-gaps discovered *during* GTM planning stay plain numbered dev tickets in TICKETS.md, not
-`[GTM]` ones — the prefix is for marketing/business/launch-operations work, not engineering
-work that GTM planning happened to surface.
+`{{CODE_REPO_NAME}}`, so they're visually and filterably distinct from plain dev tickets on
+the same repo and the same board (filter `label:go-to-market`). Product/engineering gaps
+discovered *during* GTM planning stay plain dev tickets, not `[GTM]` ones: the prefix is for
+marketing/business/launch-operations work, not engineering work that GTM planning happened
+to surface. Full conventions: `{{PROJECT_DIR}}/TICKETS.md`.
 
 ## Seeing everything required before launch: the v1.0 Launch milestone
 
-The `[GTM]` prefix/label and TICKETS.md's `Tier` column each answer a different question
+The `[GTM]` prefix/label and the tier labels each answer a different question
 (what *kind* of work is this; which *pricing tier* does it unlock) — neither answers "is this
 required before launch." That's what the **v1.0 Launch** GitHub milestone on
-`{{CODE_REPO_NAME}}` is for: it spans both TICKETS.md and GTM_TICKETS.md, carries every P0
+`{{CODE_REPO_NAME}}` is for: it spans dev and `[GTM]` tickets, carries every P0
 engineering ticket and every Phase B/C GTM ticket, and shows a native open/closed progress
 bar instead of requiring a point-in-time doc read. Phase D/E GTM tickets (launch-day
 execution, post-launch growth) are deliberately left off — they happen at/after launch, not

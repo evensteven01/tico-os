@@ -36,11 +36,11 @@ adapting: -->
 - **Don't build a later phase as if it already exists.** Per SPEC.md §5 — no premature
   integration/sync/scaling logic for a phase that hasn't started. A deviation is a
   deliberate, individually-justified exception, never a default to reach for.
-- **Write decisions back into the docs the moment they're made.** SPEC.md/TICKETS.md should
+- **Write decisions back into the docs the moment they're made.** SPEC.md and the issues should
   never drift more than a spec-review cycle behind reality.
 - **Standing workflow:** branch off `main` → implement → {{TYPECHECK_COMMAND}} →
-  {{TEST_COMMAND}} → {{UI_VERIFY_STEP}} → commit → PR → update both trackers (Project board
-  + TICKETS.md) at every stage: In progress the moment work starts, In review once a PR is
+  {{TEST_COMMAND}} → {{UI_VERIFY_STEP}} → commit → PR → move the issue's card on the
+  board at every stage: In progress the moment work starts, In review once a PR is
   up, Done once merged.
 
 ## Reviewer persona
@@ -110,12 +110,13 @@ session actually needs. -->
   `<project>-backend`, "reserves the name, not started"), a `<project>-landing` beta page
   repo. Delete if none. -->
 - `{{DOCS_REPO}}` — `{{PROJECT_DIR}}/SPEC.md` (product/architecture source of truth),
-  `{{PROJECT_DIR}}/TICKETS.md` (dev ticket index), `{{PROJECT_DIR}}/go-to-market/` (launch
+  `{{PROJECT_DIR}}/TICKETS.md` (ticket conventions), `{{PROJECT_DIR}}/go-to-market/` (launch
   planning, with its own `PERSONA.md` for that separate scope — don't conflate the two
   roles).
-- GitHub Issues on this repo are the dev backlog source of truth; <!-- name the Project
-  board here if one exists --> and TICKETS.md both mirror it — keep them in sync at every
-  ticket-status change.
+- GitHub Issues on this repo are the list of work, go-to-market ones included, tracked on
+  the [Fordsoft Development board → {{APP_SLUG}}]({{BOARD_VIEW_URL}}). No markdown ticket
+  list mirrors them, so there's nothing to keep in sync. New issues: add them to the board
+  with App = `{{APP_SLUG}}`.
 
 ### Doc map
 
@@ -124,11 +125,12 @@ session actually needs. -->
 | `README.md` | What this app is, how to run it |
 | `{{AGENTS_OR_README_FILE}}` | Stack-specific setup/testing detail |
 | `{{DOCS_REPO}}/{{PROJECT_DIR}}/SPEC.md` | Product/architecture source of truth |
-| `{{DOCS_REPO}}/{{PROJECT_DIR}}/TICKETS.md` | Live dev ticket index |
+| [Fordsoft Development → {{APP_SLUG}}]({{BOARD_VIEW_URL}}) | The work: every issue, by status |
+| `{{DOCS_REPO}}/{{PROJECT_DIR}}/TICKETS.md` | Ticket conventions for this project |
 | `{{DOCS_REPO}}/{{PROJECT_DIR}}/go-to-market/PERSONA.md` | Sibling GTM/launch-readiness persona |
 | `{{DOCS_REPO}}/{{PROJECT_DIR}}/go-to-market/MASTER_PLAN.md` | Full launch roadmap (once it exists) |
 
-### Status snapshot ({{DATE}} — reverify against TICKETS.md/GitHub before relying on this)
+### Status snapshot ({{DATE}} — reverify against the board before relying on this)
 
 <!-- 2-3 sentences: what's built, what's open, what's in review. This section goes stale
 fast by design — the caveat in the header is load-bearing, not decoration. -->

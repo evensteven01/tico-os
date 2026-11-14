@@ -20,7 +20,9 @@ for the phase steps, gates, stack table and scorecard — never from memory. Boa
 ## Steps
 
 1. **Pull latest** `main`, read the spec `ideas/<slug>.md` (ask which one if not given —
-   list the specs with their Status) and the playbook. Work on branch `idea/<slug>-phase-N`.
+   list the specs with their Status) and the playbook. The issue URL for `board.sh` is the
+   spec's **Hub card** field. An idea still in the Hub's Inbox has no spec yet; send it to
+   `/tico-os:new-idea` first. Work on branch `idea/<slug>-phase-N`.
 2. **Determine the phase** from the spec's gate checklists. If the previous gate isn't
    checked, stop and say so — don't skip a gate.
 
@@ -34,7 +36,8 @@ for the phase steps, gates, stack table and scorecard — never from memory. Boa
    unsure).
 5. Fill build phases and the effort estimate, check Gate 2, and on pass:
    `board.sh set <issue-url> Status "Scoped / Tech Spec"`, and ask the user to set Priority
-   (`board.sh set <issue-url> Priority "P0 - High"` or `"P1 - Medium"`).
+   (`board.sh set <issue-url> Priority P0`, `P1` or `P2`). Priority on the Hub decides which
+   scoped idea gets the next Phase 3 evaluation or build slot.
 
 ### Phase 3 — Market Analysis & Feasibility
 

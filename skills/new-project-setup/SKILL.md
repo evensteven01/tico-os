@@ -1,6 +1,6 @@
 ---
 name: new-project-setup
-description: Use when starting a new personal side-project (a new app/repo, or a new project directory under project-docs) — bootstraps the three-persona system (Coder, Reviewer, GTM Advisor), the SPEC/TICKETS doc structure, the go-to-market planning doc-set (with mobile or web platform variants), and starter files (CI, GitHub labels/milestone, beta landing page). Also use when asked to "set up personas," "bootstrap go-to-market planning," or "streamline launch planning" for an existing project that doesn't have this structure yet.
+description: Use when starting a new personal side-project (a new app/repo, or a new project directory under project-docs) — bootstraps the three-persona system (Coder, Reviewer, GTM Advisor), the SPEC/TICKETS doc structure, the go-to-market planning doc-set (with mobile or web platform variants), and starter files (CI, GitHub labels/milestone, beta landing page). Also use when asked to "set up personas," "bootstrap go-to-market planning," or "streamline launch planning" for an existing project that doesn't have this structure yet. To bring an existing project onto the portfolio boards (Hub card, work board, links), use adopt-project, which calls back into this skill for any docs it's missing.
 ---
 
 # New Project Setup
@@ -61,7 +61,7 @@ templates/
 └── scaffolding/
     ├── code-repo/         # AGENTS.md "start here" section + CLAUDE.md (@AGENTS.md)
     ├── ci/node-ci.yml     # GitHub Actions: npm ci, test, typecheck
-    ├── github/setup-github.sh   # go-to-market label, tier labels, v1.0 Launch milestone
+    ├── github/setup-github.sh   # labels, v1.0 Launch milestone, connect repo to the work board
     ├── mobile/eas.json    # development / preview (APK) / production build profiles
     ├── landing/           # static beta-recruitment page for GitHub Pages
     └── backend-placeholder/README.md   # reserve a deferred-phase repo name
@@ -85,9 +85,9 @@ hints, and which scaffolding applies.
 
 2. **Set up the docs-repo structure** for the project using `templates/SPEC.md` and
    `templates/TICKETS.md` as skeletons, written to `<project>/SPEC.md` and
-   `<project>/TICKETS.md` in the docs repo. `TICKETS.md` only becomes meaningful once
-   GitHub Issues exist on the code repo — it's fine to create it near-empty at first, and to
-   leave out the Tier column until a pricing model exists.
+   `<project>/TICKETS.md` in the docs repo. `TICKETS.md` holds this project's ticket
+   **conventions** and a link to its board view, never a list of tickets: the issues on the
+   Fordsoft Development board are the only list of work.
 
 3. **Create the Coder/Reviewer persona** at the code repo's root, from
    `templates/PERSONA-code-repo.md`, filling in the project-specific placeholders (name,
@@ -102,8 +102,13 @@ hints, and which scaffolding applies.
      Node version matching `package.json`'s `engines.node` (pin one if missing). Adapt the
      steps for a non-Node stack rather than skipping CI — it's a 15-minute add that every
      later review otherwise flags.
-   - `scaffolding/github/setup-github.sh <owner/repo>` — creates the `go-to-market` label
-     and `v1.0 Launch` milestone. Re-run with `--with-tiers` once 03 defines a paid tier.
+   - `scaffolding/github/setup-github.sh <owner/repo> --app <slug>`: creates the
+     `go-to-market` and `deferred` labels and the `v1.0 Launch` milestone, links the repo to
+     the Fordsoft Development board and puts its issues on it with App set. First run
+     `board.sh --board dev app-add <slug>` (creates the App option and the app's board
+     view), and preview with `--dry-run`. Re-run with `--with-tiers` once 03 defines a paid
+     tier. When this skill runs from `graduate-idea` or `adopt-project`, the
+     `procedures/connect-project.md` procedure does this step.
    - `scaffolding/backend-placeholder/README.md` — only if SPEC.md §5 names a deferred phase
      that will live in its own repo, and the user wants the name reserved now.
    - Platform-specific ones (e.g. `eas.json`) per the platform's `PLATFORM.md`, when that
@@ -150,13 +155,19 @@ hints, and which scaffolding applies.
    persona file summarizing still-empty docs is useless, so do this step last, not in
    parallel with step 5.
 
-7. **Wire up GitHub conventions:**
+7. **Wire up GitHub conventions** (the full set is in proj-incubator's
+   `processes/ticket-conventions.md`):
+   - Every issue for the app lives on its main code repo and goes on the Fordsoft
+     Development board with App = `<slug>`
+     (`board.sh --board dev add <url> --app <slug>`).
    - GTM-scoped issues get a `[GTM]` title prefix and the `go-to-market` label, kept
-     separate from plain numbered dev issues — mirrors `TICKETS.md` vs. `GTM_TICKETS.md`.
+     distinct from plain dev issues on the same board.
    - Every P0 dev ticket and every Phase B/C `[GTM]` ticket goes on the `v1.0 Launch`
-     milestone; feature tickets gated behind a paid tier get `paid-tier`.
-   - Set up a GitHub Project board mirroring both ticket streams, if the user wants one (not
-     mandatory — TICKETS.md/GTM_TICKETS.md alone are sufficient).
+     milestone; feature tickets gated behind a paid tier get `paid-tier`; work deliberately
+     decided out of v1 gets `deferred`.
+   - **Every `go-to-market/05` checklist item becomes an issue** in `v1.0 Launch` once 05
+     is drafted, so the milestone, not the checklist file, shows what's left. Show the list
+     before creating them.
    - Branch+PR discipline (never push straight to `main`) is a standing rule across this
      user's projects already — this skill doesn't need to re-establish it, just make sure
      the new repo's `PERSONA.md` states it under "shared context," since that's where a
@@ -168,9 +179,10 @@ hints, and which scaffolding applies.
    needs recruits beyond the personal network, offer `scaffolding/landing/` as a separate
    `<project>-landing` repo on GitHub Pages; ask whether the network is enough first.
 
-9. **Cross-link everything** — each persona file's sibling-doc pointer, each doc's doc-map
-   table, the code repo's `AGENTS.md` "start here" pointer to `PERSONA.md`, and the docs
-   repo README's project list.
+9. **Cross-link everything**: each persona file's sibling-doc pointer and board link, each
+   doc's doc-map table, the code repo's `AGENTS.md` "start here" pointer to `PERSONA.md`,
+   the code repo README's "Project docs · Board" line, and the docs repo README's project
+   list. (`procedures/connect-project.md` lists the exact lines.)
 
 ## Keeping the templates current
 
