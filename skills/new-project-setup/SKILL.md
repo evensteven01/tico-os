@@ -107,7 +107,8 @@ hints, and which scaffolding applies.
      the Fordsoft Development board and puts its issues on it with App set. First run
      `board.sh --board dev app-add <slug>` (creates the App option and the app's board
      view), and preview with `--dry-run`. Re-run with `--with-tiers` once 03 defines a paid
-     tier. When this skill runs from `graduate-idea` or `adopt-project`, the
+     tier. For a secondary repo (`-landing`, `-backend`) use `--secondary`: it only links
+     the repo to the board, because the app's issues and milestone live on the main repo. When this skill runs from `graduate-idea` or `adopt-project`, the
      `procedures/connect-project.md` procedure does this step.
    - `scaffolding/backend-placeholder/README.md` — only if SPEC.md §5 names a deferred phase
      that will live in its own repo, and the user wants the name reserved now.

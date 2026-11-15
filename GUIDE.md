@@ -336,6 +336,11 @@ creates its Hub card and connects it exactly as graduation would. Finally it rep
 missing compared with a graduated project, such as a launch checklist with no matching
 issues, and offers to fill each gap with you, one at a time.
 
+If the project turns out never to have been built (an empty repository and a few research
+notes, like dig-explorer), it isn't connected as an app at all. It becomes an idea in the
+Inbox instead, with links to the old research, and goes through the incubator from the
+start whenever you want to evaluate it.
+
 ### Stage 5: Build
 
 Building happens in the app's own repositories. The work is tracked as issues on Fordsoft

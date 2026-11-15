@@ -56,18 +56,27 @@ One card per app, for its whole life.
 
 1. `board.sh --board dev app-add <slug>`: creates the App option and a board view filtered
    to this app (both idempotent). Record the view URL it prints; it goes in steps 1, 3 and 4.
-2. For **each** code repo, preview first, then run:
+2. For the **main** code repo, preview first, then run:
 
    ```bash
    setup-github.sh evensteven01/<repo> --app <slug> --dry-run
-   setup-github.sh evensteven01/<repo> --app <slug>
+   setup-github.sh evensteven01/<repo> --app <slug> [--skip <n,n>]
    ```
 
    This creates the labels and the `v1.0 Launch` milestone if missing, links the repo to
    the board (so it shows in the repo's Projects tab), and puts every issue on the board
-   with App set. Issues already on the board keep their Status. Show the user the dry-run
-   list and ask about anything that looks wrong for this app (e.g. a business task that
-   belongs under App = `Shared`, or a stray issue that should be closed instead).
+   with App set. Issues already on the board keep their Status, and a card that already
+   has a different App (e.g. `Shared`) keeps it. Show the user the dry-run list and ask
+   about anything that looks wrong for this app:
+   - a business task shared across apps → set App = `Shared` on it afterwards
+     (`board.sh --board dev set <url> App Shared`)
+   - a stray or retired issue that shouldn't be on the board → pass its number in
+     `--skip`, and consider closing it
+
+   For **each other** code repo (`-landing`, `-backend`), only link it to the board:
+   `setup-github.sh evensteven01/<repo> --app <slug> --secondary` (preview with
+   `--dry-run`). That skips the labels, the milestone and the issues, since every issue for
+   the app lives on the main repo and a second milestone would sit empty.
 3. New issues opened by hand later won't join the board automatically: the free plan
    allows one auto-add rule per board. Skills that create issues add them with
    `board.sh --board dev add <url> --app <slug>`. Sub-issues of an epic already on the board

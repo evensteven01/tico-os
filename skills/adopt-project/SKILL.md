@@ -27,6 +27,15 @@ asked.
 
    Propose the stage with the evidence for it; the user confirms. Also confirm the app slug
    and display name.
+
+   **Never built?** If there's no working code (an empty or hello-world repo, issues that
+   are only research notes), it's an idea, not an app: don't connect it. Propose capturing
+   it as an `[Idea]` issue in the Hub's **Inbox**, as `new-idea` quick mode does, with a
+   short summary and links to the repo and its most useful research issues. Then stop here
+   (skip steps 3–6). Its old issues stay in its repo as research notes; leave them off
+   Fordsoft Development, close any that are already done, and close any old per-project
+   board. Optionally add a README line in the repo pointing to the new card. The Phase 1
+   interview (`new-idea` on the card) comes later, when the user wants to evaluate it.
 3. **Check for an existing card.** `board.sh list` (Hub) and
    `board.sh --board dev list --app <slug>`: don't create a second Hub card, and note any
    of its issues already on the work board.
