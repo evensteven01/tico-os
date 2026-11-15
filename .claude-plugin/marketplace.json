@@ -7,7 +7,7 @@
     {
       "name": "tico-os",
       "source": "./",
-      "description": "Personal portfolio toolkit: idea pipeline (new-idea, evaluate-idea, graduate-idea, portfolio), project bootstrap, pattern extraction, house rules, and research subagents."
+      "description": "Personal portfolio toolkit: idea-to-live app life cycle (new-idea, evaluate-idea, graduate-idea, adopt-project, launch-retro, portfolio), project bootstrap, pattern extraction, house rules, and research subagents."
     }
   ]
 }

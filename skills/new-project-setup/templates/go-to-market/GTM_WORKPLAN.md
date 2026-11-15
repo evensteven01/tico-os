@@ -2,7 +2,7 @@
 
 Working checklist for getting through the open `[GTM]` tickets in order. It sequences the
 work; the reasoning stays in [MASTER_PLAN.md](MASTER_PLAN.md) and the numbered docs, and
-ticket status stays in [GTM_TICKETS.md](GTM_TICKETS.md). Started {{DATE}}. Check items off
+ticket status stays on the issues themselves (the board's **Launch readiness** view). Started {{DATE}}. Check items off
 as they land, and **delete this file once the last step is done** — it's scaffolding for
 an execution push, not a permanent doc.
 

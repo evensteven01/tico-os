@@ -50,8 +50,7 @@ me see further / do more of what I already love") rather than withholding the ba
 
 <!-- Note explicitly: being a paid-tier feature doesn't change whether something ships for
 v1 — pricing only decides whether *access* to a built feature requires the unlock. Mirror
-the split onto tickets with `paid-tier` / `subscription-tier` labels and TICKETS.md's Tier
-column. -->
+the split onto tickets with `paid-tier` / `subscription-tier` labels. -->
 
 **Price point:** <!-- the exact number and why that number (comparable products, how much
 the free tier already gives away), plus any launch discount with an explicit end date. -->

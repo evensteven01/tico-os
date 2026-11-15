@@ -50,21 +50,23 @@ through. -->
 
 ## Where things live
 
-- **`{{CODE_REPO_NAME}}`** — the product. GitHub Issues are the dev backlog source of
-  truth; `{{PROJECT_DIR}}/TICKETS.md` mirrors it.
+- **`{{CODE_REPO_NAME}}`** — the product. GitHub Issues are the list of work, go-to-market
+  ones included; `{{PROJECT_DIR}}/TICKETS.md` holds the conventions.
 - **`{{DOCS_REPO}}`** (this repo) — `{{PROJECT_DIR}}/SPEC.md` is the product/architecture
   source of truth; `{{PROJECT_DIR}}/go-to-market/` (this folder) is the launch plan.
-- <!-- Name the GitHub Project board here if one exists. -->
+- **[Fordsoft Development → {{APP_SLUG}}]({{BOARD_VIEW_URL}})**: every issue for this app, by
+  status. Its **Launch readiness** view is the v1.0 Launch milestone across all apps.
 - **v1.0 Launch milestone** on `{{CODE_REPO_NAME}}` — everything required before launch,
   across both ticket indexes.
 
 ## Ticket & git conventions
 
-- Product/engineering work: plain numbered issues on `{{CODE_REPO_NAME}}`, indexed in
-  `{{PROJECT_DIR}}/TICKETS.md` — including engineering gaps that GTM planning surfaces,
-  which stay plain dev tickets, not `[GTM]`-prefixed.
+- Product/engineering work: plain issues on `{{CODE_REPO_NAME}}`, including engineering
+  gaps that GTM planning surfaces, which stay plain dev tickets, not `[GTM]`-prefixed.
 - Marketing/business/launch-ops work: `[GTM]`-prefixed title + `go-to-market` label on
-  `{{CODE_REPO_NAME}}`, indexed in [GTM_TICKETS.md](GTM_TICKETS.md).
+  `{{CODE_REPO_NAME}}`, on the same board.
+- Business setup shared by every app (developer accounts, business entity): App = `Shared`
+  on the board, filed in `proj-incubator`, not here.
 - Every repo: always branch + PR, never push straight to `main`.
 
 ## Doc map
@@ -82,8 +84,8 @@ through. -->
 | [07](07-beta-testing-program.md) | How do we use friends/testers to de-risk launch? |
 | [08](08-mvp-definition.md) | Exactly what ships in v1? |
 | [09](09-readiness-testing-plan.md) | How is each MVP item verified? |
-| `{{PROJECT_DIR}}/TICKETS.md` / [GTM_TICKETS.md](GTM_TICKETS.md) | Live ticket indexes |
+| [Fordsoft Development → {{APP_SLUG}}]({{BOARD_VIEW_URL}}) / `{{PROJECT_DIR}}/TICKETS.md` | The work / ticket conventions |
 
-## Status snapshot ({{DATE}} — reverify against TICKETS.md/GitHub before relying on this)
+## Status snapshot ({{DATE}} — reverify against the board before relying on this)
 
 <!-- 2-3 sentences: what's built, what's ticketed, what phase of the roadmap is active. -->

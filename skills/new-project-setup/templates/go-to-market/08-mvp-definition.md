@@ -74,5 +74,5 @@ The "finish the MVP" phase in MASTER_PLAN.md is done when every **In scope** row
 built to its stated acceptance bar and verified per
 [09-readiness-testing-plan.md](09-readiness-testing-plan.md) — not when the obviously-open
 tickets are closed and everything else is assumed fine. Re-check this table against
-TICKETS.md whenever a ticket closes, and update it if scope changes in either direction —
+the board whenever a ticket closes, and update it if scope changes in either direction —
 don't let this file drift out of sync with reality any more than SPEC.md is allowed to.
