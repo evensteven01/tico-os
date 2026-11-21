@@ -83,7 +83,9 @@ its own copy of the plugin, taken from `main` at install time. To pick up merged
 ~/Development/tico-os/scripts/plugin.sh update
 ```
 
-Then reload VS Code and open a new chat, as when installing.
+Then type **`/reload-plugins`** in each open chat that should get the change. It loads the
+new version's skills, agents and hooks in place, so there's no need to reload VS Code or
+start a new chat. Reloading the window still works if a chat doesn't pick it up.
 
 **Bump the version with every change.** Claude Code stores installed copies by version
 number (under `~/.claude/plugins/cache/tico-os/tico-os/<version>/`). Any PR that changes the
@@ -107,7 +109,7 @@ claude plugin marketplace remove tico-os   # optional: also forget the source
 |---|---|
 | `/plugin` in the VS Code chat says it isn't available | Expected. Use `scripts/plugin.sh` from a terminal instead. |
 | `/tico-os:` commands don't appear | Run `plugin.sh status` to confirm it's installed and enabled, then reload the window and open a **new** chat. |
-| A merged change isn't showing up | Check that the PR bumped the version, run `plugin.sh update`, reload, and open a new chat. |
+| A merged change isn't showing up | Check that the PR bumped the version, run `plugin.sh update`, then `/reload-plugins` in the chat (or reload the window). |
 | `plugin.sh` says no Claude Code CLI was found | Install or update the Claude Code extension in VS Code. The script looks in `~/.vscode/extensions/`. |
 | The board script fails with a permissions error | `gh auth status` should list the `project` scope; if not, run `gh auth refresh -s project`. |
 | The house rules don't load | Run `plugin.sh status` to check the plugin is enabled. The rules come from a session-start hook, so they only appear in chats started after the reload. |

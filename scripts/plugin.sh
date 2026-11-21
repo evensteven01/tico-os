@@ -48,7 +48,7 @@ case "${1:-}" in
     "$CLAUDE" plugin marketplace update "$MARKETPLACE_NAME"
     "$CLAUDE" plugin update "$PLUGIN_ID"
     echo
-    echo "Done. Reload VS Code (Cmd+Shift+P → Developer: Reload Window) and start a new chat."
+    echo "Done. In each open chat, type /reload-plugins to load the new version (or reload the window)."
     ;;
   status)
     echo "Using: $CLAUDE"
