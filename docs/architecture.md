@@ -31,7 +31,8 @@
   filtered view through the GraphQL API.
 - **templates/scaffolding/github/setup-github.sh --app** — per-repo board wiring: labels,
   launch milestone, repo↔board link, every issue onto the work board (existing cards keep
-  their Status). `--dry-run` previews.
+  their Status and any App they already have). `--skip` leaves out single issues,
+  `--secondary` only links a `-landing`/`-backend` repo, `--dry-run` previews.
 - **scripts/plugin.sh** — install/update/status through the Claude Code CLI bundled with the
   VS Code extension, since the VS Code chat doesn't accept `/plugin`.
 - **hooks/ (SessionStart) + rules/house-rules.md** — standing rules injected into every

@@ -123,9 +123,11 @@ board.sh --board dev add <issue-url> --app budget-app --status Ready
 board.sh --board dev app-add <app>                 # new App option + its board view
 ```
 
-`setup-github.sh <owner/repo> --app <app> [--dry-run]` (in
-`skills/new-project-setup/templates/scaffolding/github/`) creates a repo's labels and
-launch milestone, links it to Fordsoft Development and puts all its issues on the board.
+`setup-github.sh <owner/repo> --app <app> [--skip <n,n>] [--dry-run]` (in
+`skills/new-project-setup/templates/scaffolding/github/`) creates the main repo's labels and
+launch milestone, links it to Fordsoft Development and puts all its issues on the board
+(cards that already have an App, like `Shared`, keep it). For a `-landing` or `-backend`
+repo, add `--secondary`: it only links the repo to the board.
 
 Config: `TICO_BOARD_OWNER` (default `evensteven01`), `TICO_HUB_BOARD` (default `7`),
 `TICO_DEV_BOARD` (default `5`). Needs a `gh` token with the `project` scope.
