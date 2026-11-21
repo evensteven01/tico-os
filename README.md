@@ -23,7 +23,8 @@ scripts/plugin.sh install   # once per machine
 scripts/plugin.sh update    # after merging changes here (bump the version in plugin.json)
 ```
 
-Then reload VS Code and open a new chat. The VS Code chat doesn't accept `/plugin`
+After `install`, reload VS Code and open a new chat. After `update`, type `/reload-plugins`
+in each open chat instead. The VS Code chat doesn't accept `/plugin`
 commands, which is why this goes through a script; [INSTALL.md](INSTALL.md) explains the
 details.
 
