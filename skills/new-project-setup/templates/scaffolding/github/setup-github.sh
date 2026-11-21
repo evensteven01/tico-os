@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Creates the labels and launch milestone used by the project system on a code repo, and
+# Creates the labels and release milestones (v1.0 Launch, v1.1, Later) used by the project system on a code repo, and
 # optionally connects the repo to the Fordsoft Development board.
 # Idempotent: re-running skips anything that already exists.
 #
@@ -46,23 +46,27 @@ label() {
 }
 
 label go-to-market F9A825 "Marketing/launch/business work — distinct from product engineering"
-label deferred BFBFBF "Deliberately decided out of v1; kept for a later version"
 
 if [[ -n "$with_tiers" ]]; then
   label paid-tier 8250DF "Feature gated behind the one-time paid unlock"
   label subscription-tier 1D76DB "Feature gated behind a future subscription tier"
 fi
 
-if gh api "repos/$repo/milestones?state=all" --jq '.[].title' | grep -qx "v1.0 Launch"; then
-  echo "milestone exists: v1.0 Launch"
-elif [[ -n "$dry" ]]; then
-  echo "would create milestone: v1.0 Launch"
-else
-  gh api "repos/$repo/milestones" -f title="v1.0 Launch" \
-    -f description="Everything required before the first public release: all P0 engineering tickets plus Phase B/C go-to-market tickets. Excludes launch-day execution and post-launch growth work." \
-    >/dev/null
-  echo "created milestone: v1.0 Launch"
-fi
+# Release milestones: which release an issue is for. No milestone = not decided yet.
+existing_milestones="$(gh api "repos/$repo/milestones?state=all" --paginate --jq '.[].title')"
+milestone() {
+  if grep -qxF "$1" <<<"$existing_milestones"; then
+    echo "milestone exists: $1"
+  elif [[ -n "$dry" ]]; then
+    echo "would create milestone: $1"
+  else
+    gh api "repos/$repo/milestones" -f title="$1" -f description="$2" >/dev/null
+    echo "created milestone: $1"
+  fi
+}
+milestone "v1.0 Launch" "Everything required before the first public release: the engineering work v1 needs plus the go-to-market work to decide the business and get launch-ready. Excludes launch-day execution and post-launch growth work."
+milestone "v1.1" "Planned for the first update after launch."
+milestone "Later" "Decided: not in v1.0 and not planned for v1.1; no date yet. Issues with no milestone are still to be decided."
 
 fi  # not --secondary
 

@@ -1,7 +1,7 @@
 {
   "name": "tico-os",
   "description": "Personal portfolio toolkit for taking apps from idea to live: an idea pipeline (new-idea with Inbox quick capture, evaluate-idea, graduate-idea), adopt-project for existing apps, launch-retro, and a portfolio report, wired to proj-incubator and two GitHub Project boards (the Hub and Fordsoft Development); new-project-setup with mobile/web variants and starter files; extract-pattern; house rules loaded at session start; research subagents (market-researcher, idea-critic, Haiku-pinned tico-cheap).",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": {
     "name": "Steven Ford"
   }

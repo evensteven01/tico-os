@@ -17,7 +17,9 @@ This file only records what's specific to {{PROJECT_NAME}}.
 | What's being worked on? | The board's **Current focus** view (Ready + In progress, all apps) |
 | What's left before launch? | The **[v1.0 Launch milestone](https://github.com/{{OWNER}}/{{CODE_REPO_NAME}}/milestone/{{MILESTONE_NUMBER}})**, or the board's **Launch readiness** view |
 | Everything for this app | The **{{APP_SLUG}}** board view |
-| What was deliberately left out of v1? | Issues labelled [`deferred`](https://github.com/{{OWNER}}/{{CODE_REPO_NAME}}/labels/deferred) |
+| What's planned for the first update? | The [`v1.1` milestone](https://github.com/{{OWNER}}/{{CODE_REPO_NAME}}/issues?q=is%3Aopen+milestone%3Av1.1), or the board's **v1.1** view |
+| What was decided out of v1, for someday? | The [`Later` milestone](https://github.com/{{OWNER}}/{{CODE_REPO_NAME}}/issues?q=is%3Aopen+milestone%3ALater) |
+| What still needs a release decision? | [Open issues with no milestone](https://github.com/{{OWNER}}/{{CODE_REPO_NAME}}/issues?q=is%3Aopen+no%3Amilestone) |
 
 ## Project-specific conventions
 

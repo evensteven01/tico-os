@@ -16,8 +16,10 @@ user asks you to fix something it finds.
    `~/Development/proj-incubator`), read the header table, Decision section and gate
    checklists of every `ideas/*.md` except the template. This is cheap structured
    extraction; delegate it to `tico-cheap` if there are more than a few specs.
-4. For apps in **In Development** or **Beta**: the main repo's `v1.0 Launch` milestone
-   (`gh api repos/<owner>/<repo>/milestones`), found from the Hub card's issue body.
+4. For apps in **In Development** or later: the main repo (found from the Hub card's issue
+   body), its release milestones (`gh api repos/<owner>/<repo>/milestones`: `v1.0 Launch`,
+   `v1.1`, `Later`), and its open issues with **no milestone**
+   (`gh issue list --repo <repo> --state open --search "no:milestone"`).
 5. For **Live** apps: the **Launched** date in the Hub card's issue body.
 
 ## Report
@@ -32,8 +34,8 @@ Keep it short and scannable, in this order:
    - In Development → `graduate-idea` if it hasn't graduated yet, else the launch milestone
    - Beta / Live → the launch milestone, or the next retro
 2. **Apps in flight**: for each In Development / Beta / Live app: launch-milestone progress
-   (`n/m closed`), the work board's In progress and Ready cards for that App, and anything
-   P0 still open.
+   (`n/m closed`), open counts for `v1.1` and `Later`, the work board's In progress and
+   Ready cards for that App, and anything P0 still open in the current milestone.
 3. **Needs attention**: only what's actually wrong:
    - **Drift**: spec Status ≠ Hub Status; spec with no Hub card; Hub card in Idea Backlog
      or later with no spec (adopted apps are exempt: their Origin row says "Adopted"); Go
@@ -43,6 +45,9 @@ Keep it short and scannable, in this order:
      whose body still has placeholders.
    - **Work board hygiene**: cards with no App; an app at In Development or later with no
      App option or no board view.
+   - **Needs a release decision**: open issues with no milestone, for apps at In
+     Development or later. No milestone means undecided, so list them (title + link) and
+     suggest `v1.0 Launch`, `v1.1` or `Later` for each; don't move them without asking.
    - **Stage suggestions**: an In Development app whose launch milestone has nothing left
      but launch-day work → suggest **Beta**; a Live app with no Launched date.
    - **Retros due**: Live apps at 30+ or 90+ days since launch with no matching retro row

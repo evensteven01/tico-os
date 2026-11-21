@@ -59,7 +59,8 @@ opening the PR**. Board updates and new repos are shown to you before they happe
    created and pre-filled, launch-checklist items become milestone issues, everything is
    linked, and the spec becomes history.
 6. **Build**: work the app's view on Fordsoft Development (Ready → In progress → In review →
-   Done).
+   Done). Each issue's milestone says which release it's for: `v1.0 Launch`, `v1.1`,
+   `Later`, or none (not decided yet).
 7. **Beta**: testers have it and the milestone is down to launch-day work → move the Hub card
    to Beta.
 8. **Launch**: card → Live / Launched; put the launch date in the card's issue and close it.
