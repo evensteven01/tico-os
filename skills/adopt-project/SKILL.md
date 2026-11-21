@@ -49,11 +49,13 @@ asked.
    - `project-docs/<slug>/SPEC.md`, `TICKETS.md` (conventions version), `go-to-market/`
      (01–09 for its platform, MASTER_PLAN, PERSONA)
    - code repo `PERSONA.md`, `AGENTS.md` + `CLAUDE.md`, CI workflow
-   - labels and the `v1.0 Launch` milestone (step 4 fixed these if missing)
+   - labels and the `v1.0 Launch`, `v1.1` and `Later` milestones (step 4 fixed these if
+     missing)
    - **Old ticket lists:** if `TICKETS.md` or `GTM_TICKETS.md` still hold ticket rows,
      propose replacing them with the conventions version. First rescue anything that
      isn't already on the issues (decisions, groupings, "decide v1 or later" notes) into
-     issue comments or labels (`deferred`), and show what will be rescued.
+     issue comments, or into the `v1.1` / `Later` milestones for "decided: after v1"
+     notes, and show what will be rescued.
    - **Launch checklist vs. milestone:** every `go-to-market/05` item should be an issue
      in `v1.0 Launch`; list the ones that aren't.
 

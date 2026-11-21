@@ -103,7 +103,7 @@ hints, and which scaffolding applies.
      steps for a non-Node stack rather than skipping CI — it's a 15-minute add that every
      later review otherwise flags.
    - `scaffolding/github/setup-github.sh <owner/repo> --app <slug>`: creates the
-     `go-to-market` and `deferred` labels and the `v1.0 Launch` milestone, links the repo to
+     `go-to-market` label and the `v1.0 Launch`, `v1.1` and `Later` milestones, links the repo to
      the Fordsoft Development board and puts its issues on it with App set. First run
      `board.sh --board dev app-add <slug>` (creates the App option and the app's board
      view), and preview with `--dry-run`. Re-run with `--with-tiers` once 03 defines a paid
@@ -163,9 +163,10 @@ hints, and which scaffolding applies.
      (`board.sh --board dev add <url> --app <slug>`).
    - GTM-scoped issues get a `[GTM]` title prefix and the `go-to-market` label, kept
      distinct from plain dev issues on the same board.
-   - Every P0 dev ticket and every Phase B/C `[GTM]` ticket goes on the `v1.0 Launch`
-     milestone; feature tickets gated behind a paid tier get `paid-tier`; work deliberately
-     decided out of v1 gets `deferred`.
+   - Every ticket v1 needs (engineering, and Phase B/C `[GTM]`) goes on the `v1.0 Launch`
+     milestone; work decided for the first update goes on `v1.1`; work decided out of v1
+     with no date goes on `Later`. No milestone means not decided yet. Feature tickets
+     gated behind a paid tier get `paid-tier`.
    - **Every `go-to-market/05` checklist item becomes an issue** in `v1.0 Launch` once 05
      is drafted, so the milestone, not the checklist file, shows what's left. Show the list
      before creating them.

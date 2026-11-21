@@ -350,6 +350,13 @@ merge. The [ticket conventions](https://github.com/evensteven01/proj-incubator/b
 explain the fields, labels and how to split big pieces of work into an epic with smaller
 sub-issues.
 
+Each issue's **milestone** says which release it's for: **v1.0 Launch** (needed before the
+first public release), **v1.1** (the first update after launch) or **Later** (decided: not
+now, no date). An issue with no milestone hasn't been decided yet, and the portfolio report
+lists those so they get a decision. Priority then says how urgent an issue is within its
+release, and Status says whether you're working on it now: the **Current focus** view
+(Ready and In progress) is the answer to "what do I work on next?".
+
 ### Stage 6: Beta and launch
 
 When testers have the app (through TestFlight, a downloadable Android build, or a beta
@@ -437,7 +444,8 @@ for every app. Each card has:
 - **Priority** (P0 to P2) and **Size** (XS to XL).
 
 Its views include one per app, **Current focus** (everything Ready or In progress, across
-all apps) and **Launch readiness** (everything in each app's v1.0 Launch milestone). The
+all apps), **Launch readiness** (everything in each app's v1.0 Launch milestone) and
+**v1.1** (the first update after launch). The
 board is the only list of work: there are no separate ticket lists in documents to keep in
 sync.
 
@@ -580,8 +588,10 @@ in this system is an issue.
 **Launch retro.** A review about 30 and 90 days after launch that compares an app's real
 numbers with its predictions.
 
-**Milestone.** A GitHub grouping of issues with a progress bar. Each app's
-**v1.0 Launch** milestone holds everything required before its first public release.
+**Milestone.** A GitHub grouping of issues with a progress bar, used to say which release
+an issue is for. Each app's main repo has **v1.0 Launch** (everything required before its
+first public release), **v1.1** (the first update after launch) and **Later** (decided: not
+now, no date). No milestone means not decided yet.
 
 **MVP (minimum viable product).** The smallest first version of an app that still delivers
 its core promise.
